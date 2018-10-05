@@ -1,29 +1,144 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6724" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3735"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="235" y="347"/>
-        </scene>
-        <!--Glance Interface Controller-->
-        <scene sceneID="BOz-TT-tkC">
-            <objects>
-                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModuleProvider="target">
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SpeedyContactAdd_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group alignment="left" id="t8f-Gd-c4y"/>
-                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                        <group width="150" height="20" alignment="left" contentMode="scaleAspectFit" id="QNO-hE-ZFI">
+                            <items>
+                                <label width="150" height="20" alignment="left" verticalAlignment="center" textAlignment="center" id="Myc-F5-oVG">
+                                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" height="35" alignment="left" id="9U7-cq-ofN">
+                            <items>
+                                <button width="45" height="35" alignment="left" title="1" id="wKJ-Fy-HlE">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber1Action" destination="AgC-eL-Hgc" id="uNg-JQ-HXX"/>
+                                    </connections>
+                                </button>
+                                <button width="45" height="35" alignment="center" title="2" id="dnV-wl-IcT">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber2Action" destination="AgC-eL-Hgc" id="oco-Oa-LOP"/>
+                                    </connections>
+                                </button>
+                                <button width="45" height="35" alignment="right" title="3" id="X6k-pZ-gu4">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber3Action" destination="AgC-eL-Hgc" id="xrk-Z3-olZ"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" height="35" alignment="left" id="S6S-J7-UHG">
+                            <items>
+                                <button width="45" height="35" alignment="left" title="4" id="FOK-Jq-GAu">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber4Action" destination="AgC-eL-Hgc" id="Y68-lM-oOQ"/>
+                                    </connections>
+                                </button>
+                                <button width="45" height="35" alignment="center" title="5" id="bup-GL-bIo">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber5Action" destination="AgC-eL-Hgc" id="YcF-7A-QBP"/>
+                                    </connections>
+                                </button>
+                                <button width="45" height="35" alignment="right" title="6" id="x2a-XQ-flT">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber6Action" destination="AgC-eL-Hgc" id="jY6-tK-Emh"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" height="35" alignment="left" id="X5J-2c-nbj">
+                            <items>
+                                <button width="45" height="40" alignment="left" title="7" id="oRh-d8-Weq">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber7Action" destination="AgC-eL-Hgc" id="erk-nF-py4"/>
+                                    </connections>
+                                </button>
+                                <button width="45" height="40" alignment="center" title="8" id="DXI-yV-FvW">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber8Action" destination="AgC-eL-Hgc" id="Idx-Kz-rW2"/>
+                                    </connections>
+                                </button>
+                                <button width="45" height="40" alignment="right" title="9" id="Zr6-Uh-GcU">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber9Action" destination="AgC-eL-Hgc" id="mGA-cY-T3K"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" height="35" alignment="left" id="dir-4g-4jh">
+                            <items>
+                                <button width="45" height="35" alignment="center" title="0" id="mvX-fG-XPJ">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnNumber0Action" destination="AgC-eL-Hgc" id="jot-7w-YYu"/>
+                                    </connections>
+                                </button>
+                                <button width="45" height="35" alignment="right" title="bks" id="apZ-qA-NIH">
+                                    <fontDescription key="font" type="boldSystem" pointSize="19"/>
+                                    <connections>
+                                        <action selector="btnBackspaceAction" destination="AgC-eL-Hgc" id="Ut2-4j-H9b"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <separator alignment="left" id="kAV-j5-ikZ"/>
+                        <label alignment="center" text="Contact Name" baselineAdjustment="alignCenters" numberOfLines="0" id="cPN-Iz-YF7">
+                            <fontDescription key="font" type="boldSystem" pointSize="20"/>
+                            <variation key="device=watch42mm" text="Contact Name"/>
+                        </label>
+                        <button width="1" alignment="left" title="Add Name" id="RDR-38-dsL">
+                            <fontDescription key="font" type="boldSystem" pointSize="20"/>
+                            <connections>
+                                <action selector="btnAddNameAction" destination="AgC-eL-Hgc" id="iOL-hw-d4g"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Save" id="koX-QV-BUE">
+                            <fontDescription key="font" type="boldSystem" pointSize="20"/>
+                            <connections>
+                                <action selector="btnSendtoPhone" destination="AgC-eL-Hgc" id="sre-fF-Qwa"/>
+                            </connections>
+                        </button>
                     </items>
-                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
-                </glanceController>
+                    <menu key="menu" id="Kqs-zE-Myr">
+                        <items>
+                            <menuItem title="Start Over" icon="trash" id="62O-MZ-7JK">
+                                <connections>
+                                    <action selector="btnMenuClear" destination="AgC-eL-Hgc" id="oKc-Ep-V2B"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                    <connections>
+                        <outlet property="lblPhoneNumber" destination="Myc-F5-oVG" id="G2g-mG-MBZ"/>
+                        <outlet property="lblRecipName" destination="cPN-Iz-YF7" id="UYI-0T-rWI"/>
+                    </connections>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="235" y="672"/>
+            <point key="canvasLocation" x="234.51282051282053" y="608.94871794871801"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -44,7 +159,7 @@
         <!--Notification Controller-->
         <scene sceneID="KIl-fV-djm">
             <objects>
-                <controller id="gdX-wl-uQE" customClass="NotificationController" customModuleProvider="target"/>
+                <controller id="gdX-wl-uQE" customClass="NotificationController" customModule="SpeedyContactAdd_WatchKit_App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="553" y="1001"/>
         </scene>
