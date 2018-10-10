@@ -48,25 +48,4 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenter
     }
 
     
-//    func setupNotificationPrefs() {
-//    let center = UNUserNotificationCenter.current()
-//    center.delegate = self
-//    center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-//    if granted {
-//    let category = UNNotificationCategory(identifier: "contactUploadNotify", actions:[],
-//    intentIdentifiers: [], options:[])
-//    center.setNotificationCategories(Set([category]))
-//    
-//    } else {
-//    
-//        }
-//        }
-//    }
-//    
-//    func UserNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//    completionHandler([.alert, .sound])
-//    
-//    
-//    }
-    
 }
