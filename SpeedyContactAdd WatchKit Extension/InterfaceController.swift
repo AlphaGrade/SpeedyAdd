@@ -24,8 +24,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             session.delegate = self
             self.session.activate()
         }
-        
-        
     }
     
     override func didDeactivate() {
@@ -37,91 +35,74 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?){
-        
-        
     }
     
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
     @IBOutlet var lblRecipName: WKInterfaceLabel!
     
-    
     var NumberStore = String()
     var RecipNameString = String()
-    var transfer = ""
     var identifierInt : Int = 1
-    var plusOneInt: Int = 1
     var contactTempStore : [String:String] = [:]
     var fullNameString = "fullNameString"
     var numberString = "numberString"
     var timer = Timer()
     
-    //Mark: Keypad that addes numbers to phone number
-    @IBAction func btnNumber1Action(){
-        let myCharacter = "1"
+    func numberAdd(myCharacter:String) {
         NumberStore += myCharacter
         lblPhoneNumber.setText(NumberStore)
+    }
+    func clearItems() {
+        NumberStore = ""
+        RecipNameString = ""
+        lblRecipName.setText("Contact Name")
+        lblPhoneNumber.setText("")
     }
     
+    //Mark: Keypad that addes numbers to phone number
+    @IBAction func btnNumber1Action(){
+        numberAdd(myCharacter: "1")
+    }
     @IBAction func btnNumber2Action() {
-        let myCharacter = "2"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)
+        numberAdd(myCharacter: "2")
     }
     @IBAction func btnNumber3Action() {
-        let myCharacter = "3"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)
+        numberAdd(myCharacter: "3")
     }
     @IBAction func btnNumber4Action() {
-        let myCharacter = "4"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)
+        numberAdd(myCharacter: "4")
     }
     @IBAction func btnNumber5Action() {
-        let myCharacter = "5"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)
+        numberAdd(myCharacter: "5")
     }
     @IBAction func btnNumber6Action() {
-        let myCharacter = "6"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)    }
+        numberAdd(myCharacter: "6")
+    }
     @IBAction func btnNumber7Action() {
-        let myCharacter = "7"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)
+        numberAdd(myCharacter: "7")
     }
     @IBAction func btnNumber8Action() {
-        let myCharacter = "8"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)    }
+        numberAdd(myCharacter: "8")
+    }
     @IBAction func btnNumber9Action() {
-        let myCharacter = "9"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)
+        numberAdd(myCharacter: "9")
     }
     @IBAction func btnNumber0Action() {
-        let myCharacter = "0"
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)    }
+        numberAdd(myCharacter: "0")
+    }
     @IBAction func btnBackspaceAction() {
+        if NumberStore != "" {
         NumberStore.remove(at: NumberStore.index(before: NumberStore.endIndex))
         lblPhoneNumber.setText("\(NumberStore)")
+        } else {return}
     }
-    // MARK: Force Push button resets all
+    // MARK: - Force Push button resets all
     @IBAction func btnMenuClear() {
-        
-       
-            NumberStore = ""
-            RecipNameString = ""
-            lblRecipName.setText("Contact Name")
-            lblPhoneNumber.setText("")
-        
+            clearItems()
     }
     
     // MARK: add name to RecipNameStrings
     @IBAction func btnAddNameAction() {
-      
         presentTextInputController(withSuggestions: ["New Contact"],allowedInputMode:WKTextInputMode.plain, completion:  {(result) -> Void in
             if ((result != nil) && (result!.count>0) ){
             let resultString = result![0] as! String
@@ -131,7 +112,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
          })
       }
     
-   //Creates a queue
+   //Creates a queue for stored contacts
     func tempStoreUniqueKeyGen() {
         
         fullNameString += "\(identifierInt)"
@@ -143,22 +124,17 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
     }
     
-    //  MARK: Send user info to iPhone
-    
+    //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
     @IBAction func btnSendtoPhone() {
         
-        if RecipNameString == "" {return}
-        if NumberStore == "" {return}
-        
+        if RecipNameString == "" || NumberStore == "" {return}
+
         if (WCSession.default.isReachable) {
-            
-       
+
           let message = ["RecipientName":RecipNameString, "PhoneNumber":NumberStore]
             
             WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: nil)
 
-    
-           
         } else {
             
 //   If WCSession isn't reachable, store contact on watch until phone is reachable.
@@ -221,14 +197,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
 
         // MARK: Reset Strings for next contact upload
-        NumberStore = ""
-        RecipNameString = ""
-        lblRecipName.setText("Contact Name")
-        lblPhoneNumber.setText("")
-        
+       clearItems()
     }
 
-    // MARK: upload contacts stored temporarily
+        // MARK: upload contacts stored temporarily
     @objc func uploadTempContacts() {
         if (WCSession.default.isReachable) && contactTempStore != [:] {
             
@@ -240,10 +212,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             timer = Timer.scheduledTimer(timeInterval: 150, target: self, selector: #selector(InterfaceController.uploadTempContacts), userInfo: nil, repeats: true)
             
-            
         }
-        
     }
-    
 }
-
