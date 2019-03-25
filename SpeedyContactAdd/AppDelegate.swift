@@ -16,17 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
- 
-    
-    
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
     
     [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let secondView = storyboard.instantiateViewController(withIdentifier: "tab") as! TableViewController
-//        secondView.contact = nameContact
-//        self.window?.rootViewController = secondView
+
         
       
         

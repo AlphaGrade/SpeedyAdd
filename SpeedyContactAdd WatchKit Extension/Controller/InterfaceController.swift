@@ -7,7 +7,6 @@
 //
 
 import WatchKit
-import Foundation
 import WatchConnectivity
 import UIKit
 import UserNotifications
@@ -128,18 +127,27 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBAction func btnSendtoPhone() {
         
         if RecipNameString == "" || NumberStore == "" {return}
+        
+    // TODO: - Add in a notification that states one of these is blank.
 
         if (WCSession.default.isReachable) {
 
-          let message = ["RecipientName":RecipNameString, "PhoneNumber":NumberStore]
-            
+            let message = Contacts.init(name: RecipNameString, phoneNumber: NumberStore).convertToDictionary()
             WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: nil)
 
         } else {
             
 //   If WCSession isn't reachable, store contact on watch until phone is reachable.
-                tempStoreUniqueKeyGen()
-                
+            tempStoreUniqueKeyGen()
+            
+//            let dict = Contacts.init(name: RecipNameString, phoneNumber: numberString).convertToDictionary()
+   
+//            let storedContacts = UserDefaults.standard
+//            storedContacts.set(1, forKey: "Store Number")
+//            let uniqueId = storedContacts.integer(forKey: "Store Number")
+//            storedContacts.set(dict, forKey: "\(uniqueId)")
+//            storedContacts.set(uniqueId + 1, forKey: "Store Number")
+            
                 contactTempStore["\(fullNameString)"] = RecipNameString
                 contactTempStore["\(numberString)"] = NumberStore
                 fullNameString = "fullNameString"
@@ -149,53 +157,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 uploadTempContacts()
             
             }
-    
     // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
-    func UserNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-            completionHandler([.alert, .sound])
+        if (WCSession.default.isReachable) {
+            notifyUserAfterSave(inRange: true, UUID: stringWithUUID(), contactName: RecipNameString)
+        } else if (!WCSession.default.isReachable){
+            notifyUserAfterSave(inRange: false, UUID: stringWithUUID(), contactName: RecipNameString)
         }
-   
-       func stringWithUUID() -> String {
-            let uuidObj = CFUUIDCreate(nil)
-            let uuidString = CFUUIDCreateString(nil, uuidObj)!
-            return uuidString as String
-        }
-// If WCSession is reachable, we notify stating contact has been sent to iOS
-    if (WCSession.default.isReachable) {
-        let content = UNMutableNotificationContent()
-        content.title = "Contact Added!"
-        content.body = "\(RecipNameString) has been added to your list"
-        content.badge = 1
-        content.sound = UNNotificationSound.default() // Deliver the notification in one second.
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().timeIntervalSinceNow + 1, repeats: false)
-            
-        let identifier = stringWithUUID()
-        let request = UNNotificationRequest.init(identifier: identifier, content: content, trigger: trigger)
-        // Schedule the notification.
-        
-        // optionally clear out pending and delivered notifications before adding new request
-        let center = UNUserNotificationCenter.current()
-        center.add(request, withCompletionHandler: nil)
-        
-// If WCSession isn't reachable, Contact Will be stored on Watch until session is active.
-      } else {
-        let content = UNMutableNotificationContent()
-        content.title = "Contact Pending."
-        content.body = "\(RecipNameString) will be added when your watch reconnects to your iPhone."
-        content.badge = 1
-        content.sound = UNNotificationSound.default() // Deliver the notification in one second.
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().timeIntervalSinceNow + 1, repeats: false)
-        
-        let identifier = stringWithUUID()
-        let request = UNNotificationRequest.init(identifier: identifier, content: content, trigger: trigger)
-        // Schedule the notification.
-        
-        // optionally clear out pending and delivered notifications before adding new request
-        let center = UNUserNotificationCenter.current()
-        
-        center.add(request, withCompletionHandler: nil)
-        }
-
         // MARK: Reset Strings for next contact upload
        clearItems()
     }
@@ -207,6 +174,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             WCSession.default.sendMessage(contactTempStore, replyHandler: nil, errorHandler: nil)
             
             timer.invalidate()
+            
             
         } else {
             

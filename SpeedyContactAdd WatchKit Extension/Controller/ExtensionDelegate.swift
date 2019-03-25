@@ -14,9 +14,6 @@ import UserNotifications
 class ExtensionDelegate: NSObject, WKExtensionDelegate, UNUserNotificationCenterDelegate {
 
     
-    
-    
-    
     func applicationDidFinishLaunching() {
     
         // Perform any final initialization of your application.

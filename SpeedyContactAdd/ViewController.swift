@@ -32,7 +32,7 @@ class TableViewController: UIViewController, WCSessionDelegate {
     
     var session: WCSession!
     var window: UIWindow?
-    var nameContact = "Test From AppDelegate"
+
     var numberContact = String()
     var contacts = [String]()
     var contact = String()
@@ -55,9 +55,9 @@ class TableViewController: UIViewController, WCSessionDelegate {
         if message.count == 2 {
             
             // Receive messages from watch
-            let recipNumberString = message["PhoneNumber"]!
-            let recipNameString = message["RecipientName"]!
             
+            guard let recipNumberString = message["PhoneNumber"] else {return}
+            guard let recipNameString = message["RecipientName"] else {return}
             //Combines String into Name and Phone number
             
             let tableViewContact = ("\(recipNameString) \(recipNumberString)")
@@ -97,6 +97,7 @@ class TableViewController: UIViewController, WCSessionDelegate {
             var recipNameString = ""
             
             for number in 1...messageCount {
+                
                 recipNumberString = message["numberString\(number)"] as! String
                 recipNameString = message["fullNameString\(number)"] as! String
                 
@@ -139,7 +140,6 @@ class TableViewController: UIViewController, WCSessionDelegate {
 
         let index = 0
         contacts.insert(contact, at: index)
-        
         
         if tableView == nil {
             print("doesn't contain a value!")

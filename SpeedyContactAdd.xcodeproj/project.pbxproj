@@ -24,6 +24,7 @@
 		409578CC1D3A9EE3004C0680 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578CB1D3A9EE3004C0680 /* GlanceController.swift */; };
 		409578CE1D3A9EE3004C0680 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578CD1D3A9EE3004C0680 /* ComplicationController.swift */; };
 		409578D01D3A9EE3004C0680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409578CF1D3A9EE3004C0680 /* Assets.xcassets */; };
+		D780CF3F219738A700992A14 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D780CF3E219738A700992A14 /* Contacts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		409578CD1D3A9EE3004C0680 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		409578CF1D3A9EE3004C0680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409578D11D3A9EE3004C0680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D780CF3E219738A700992A14 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,12 +161,10 @@
 		409578C21D3A9EE3004C0680 /* SpeedyContactAdd WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				409578C51D3A9EE3004C0680 /* InterfaceController.swift */,
-				409578C71D3A9EE3004C0680 /* ExtensionDelegate.swift */,
-				409578C91D3A9EE3004C0680 /* NotificationController.swift */,
-				409578CB1D3A9EE3004C0680 /* GlanceController.swift */,
+				D780CF3D2197380600992A14 /* Controller */,
+				D780CF3B219737F800992A14 /* Model */,
+				D780CF3C2197380100992A14 /* View */,
 				4095789E1D3A9EE2004C0680 /* Products */,
-				409578CD1D3A9EE3004C0680 /* ComplicationController.swift */,
 				409578CF1D3A9EE3004C0680 /* Assets.xcassets */,
 				409578D11D3A9EE3004C0680 /* Info.plist */,
 				409578C31D3A9EE3004C0680 /* Supporting Files */,
@@ -178,6 +178,33 @@
 				409578C41D3A9EE3004C0680 /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D780CF3B219737F800992A14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D780CF3E219738A700992A14 /* Contacts.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D780CF3C2197380100992A14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D780CF3D2197380600992A14 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				409578C71D3A9EE3004C0680 /* ExtensionDelegate.swift */,
+				409578C51D3A9EE3004C0680 /* InterfaceController.swift */,
+				409578C91D3A9EE3004C0680 /* NotificationController.swift */,
+				409578CB1D3A9EE3004C0680 /* GlanceController.swift */,
+				409578CD1D3A9EE3004C0680 /* ComplicationController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +366,7 @@
 			files = (
 				409059DF1D7DC90100411DCD /* NotificationController.swift in Sources */,
 				409578C81D3A9EE3004C0680 /* ExtensionDelegate.swift in Sources */,
+				D780CF3F219738A700992A14 /* Contacts.swift in Sources */,
 				409578CE1D3A9EE3004C0680 /* ComplicationController.swift in Sources */,
 				409578C61D3A9EE3004C0680 /* InterfaceController.swift in Sources */,
 				409578CC1D3A9EE3004C0680 /* GlanceController.swift in Sources */,
@@ -508,7 +536,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Debug;
 		};
@@ -529,7 +557,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
@@ -548,7 +576,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Debug;
 		};
@@ -567,7 +595,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
@@ -577,7 +605,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WMWTV546RX;
 				INFOPLIST_FILE = SpeedyContactAdd/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -592,7 +620,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WMWTV546RX;
 				INFOPLIST_FILE = SpeedyContactAdd/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
