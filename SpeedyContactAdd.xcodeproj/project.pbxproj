@@ -529,6 +529,7 @@
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -549,6 +550,7 @@
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -570,6 +572,7 @@
 				IBSC_MODULE = SpeedyContactAdd_WatchKit_Extension;
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -589,6 +592,7 @@
 				IBSC_MODULE = SpeedyContactAdd_WatchKit_Extension;
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -607,6 +611,7 @@
 				INFOPLIST_FILE = SpeedyContactAdd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -622,6 +627,7 @@
 				INFOPLIST_FILE = SpeedyContactAdd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
