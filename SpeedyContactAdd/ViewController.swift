@@ -150,18 +150,14 @@ class TableViewController: UIViewController, WCSessionDelegate {
   
         print(contacts)
         let indexPath = IndexPath(row: 0, section: 0)
-        
-        
         tableView.insertRows(at: [indexPath], with: .left)
         }
-    
-    
-    
-    
+
 }
 
 
 extension TableViewController: UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -172,16 +168,22 @@ extension TableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let contact = contacts[indexPath.row]
-        cell.textLabel?.text = contact
+        DispatchQueue.main.async {
+            let contact = self.contacts[indexPath.row]
+            cell.textLabel?.text = contact
+            
+        }
         return cell
         
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        contacts.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            guard editingStyle == .delete else { return }
+            self.contacts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
     }
     
     

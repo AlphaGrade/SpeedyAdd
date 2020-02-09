@@ -66,7 +66,7 @@ extension InterfaceController {
             content.title = "Contact Added!"
             content.body = "\(contactName) has been added to your list"
             content.badge = 1
-            content.sound = UNNotificationSound.default() // Deliver the notification in one second.
+            content.sound = UNNotificationSound.default // Deliver the notification in one second.
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().timeIntervalSinceNow + 1, repeats: false)
             
             let identifier = UUID
@@ -83,7 +83,7 @@ extension InterfaceController {
             content.title = "Contact Pending."
             content.body = "\(contactName) will be added when your watch reconnects to your iPhone."
             content.badge = 1
-            content.sound = UNNotificationSound.default() // Deliver the notification in one second.
+            content.sound = UNNotificationSound.default // Deliver the notification in one second.
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().timeIntervalSinceNow + 1, repeats: false)
             
             let identifier = UUID

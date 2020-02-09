@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch44" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15400" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch44"/>
     <dependencies>
-        <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -105,9 +102,8 @@
                             </items>
                         </group>
                         <separator alignment="left" id="kAV-j5-ikZ"/>
-                        <label alignment="center" text="Contact Name" baselineAdjustment="alignCenters" numberOfLines="0" id="cPN-Iz-YF7">
+                        <label alignment="center" text="Contact Name" baselineAdjustment="alignCenters" id="cPN-Iz-YF7">
                             <fontDescription key="font" type="boldSystem" pointSize="20"/>
-                            <variation key="device=watch42mm" text="Contact Name"/>
                         </label>
                         <button width="1" alignment="left" title="Add Name" id="RDR-38-dsL">
                             <fontDescription key="font" type="boldSystem" pointSize="20"/>
@@ -133,9 +129,8 @@
                     </menu>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                     <connections>
-                        <outlet property="keypadO" destination="dir-4g-4jh" id="zf7-Kh-qOP"/>
                         <outlet property="lblPhoneNumber" destination="Myc-F5-oVG" id="G2g-mG-MBZ"/>
-                        <outlet property="lblRecipName" destination="cPN-Iz-YF7" id="UYI-0T-rWI"/>
+                        <outlet property="lblReName" destination="cPN-Iz-YF7" id="b6y-BB-lcz"/>
                     </connections>
                 </controller>
             </objects>

@@ -9,7 +9,7 @@
 import WatchKit
 import WatchConnectivity
 import UIKit
-import UserNotifications
+import MapKit
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
@@ -25,22 +25,17 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-        
-    }
-    
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?){
     }
     
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
-    @IBOutlet var lblRecipName: WKInterfaceLabel!
+    @IBOutlet weak var lblReName: WKInterfaceLabel!
+    
     
     var NumberStore = String()
-    var RecipNameString = String()
+    var RecipNameString = String() 
     var identifierInt : Int = 1
     var contactTempStore : [String:String] = [:]
     var fullNameString = "fullNameString"
@@ -54,7 +49,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     func clearItems() {
         NumberStore = ""
         RecipNameString = ""
-        lblRecipName.setText("Contact Name")
+        lblReName.setText("Contact Name")
         lblPhoneNumber.setText("")
     }
     
@@ -102,16 +97,15 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     // MARK: add name to RecipNameStrings
     @IBAction func btnAddNameAction() {
-        presentTextInputController(withSuggestions: ["New Contact"],allowedInputMode:WKTextInputMode.plain, completion:  {(result) -> Void in
-            if ((result != nil) && (result!.count>0) ){
-            let resultString = result![0] as! String
-            self.lblRecipName.setText(resultString)
+        presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (result) in
+            guard let result = result else {return}
+            let resultString = result[0] as! String
             self.RecipNameString = resultString
-            }
-         })
-      }
+            self.lblReName.setText("\(resultString)")
+        }
+    }
     
-   //Creates a queue for stored contacts
+    //Creates a queue for stored contacts
     func tempStoreUniqueKeyGen() {
         
         fullNameString += "\(identifierInt)"
@@ -136,18 +130,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: nil)
 
         } else {
-            
 //   If WCSession isn't reachable, store contact on watch until phone is reachable.
             tempStoreUniqueKeyGen()
-            
-//            let dict = Contacts.init(name: RecipNameString, phoneNumber: numberString).convertToDictionary()
-   
-//            let storedContacts = UserDefaults.standard
-//            storedContacts.set(1, forKey: "Store Number")
-//            let uniqueId = storedContacts.integer(forKey: "Store Number")
-//            storedContacts.set(dict, forKey: "\(uniqueId)")
-//            storedContacts.set(uniqueId + 1, forKey: "Store Number")
-            
                 contactTempStore["\(fullNameString)"] = RecipNameString
                 contactTempStore["\(numberString)"] = NumberStore
                 fullNameString = "fullNameString"
@@ -158,13 +142,16 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             }
     // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
-        if (WCSession.default.isReachable) {
-            notifyUserAfterSave(inRange: true, UUID: stringWithUUID(), contactName: RecipNameString)
-        } else if (!WCSession.default.isReachable){
-            notifyUserAfterSave(inRange: false, UUID: stringWithUUID(), contactName: RecipNameString)
+        DispatchQueue.main.async {
+                if (WCSession.default.isReachable) {
+                    self.notifyUserAfterSave(inRange: true, UUID: self.stringWithUUID(), contactName: self.RecipNameString)
+                } else if (!WCSession.default.isReachable){
+                    self.notifyUserAfterSave(inRange: false, UUID: self.stringWithUUID(), contactName: self.RecipNameString)
+                }
+                // MARK: Reset Strings for next contact upload
+            self.clearItems()
         }
-        // MARK: Reset Strings for next contact upload
-       clearItems()
+    
     }
 
         // MARK: upload contacts stored temporarily
