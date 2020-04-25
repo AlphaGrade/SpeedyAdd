@@ -23,16 +23,15 @@ class TableViewController: UIViewController, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("Session is activated")
+
     }
     
     // MARK: Table View Declaration
     @IBOutlet var tableView: UITableView!
     
-    
     var session: WCSession!
     var window: UIWindow?
-
+    
     var numberContact = String()
     var contacts = [String]()
     var contact = String()
@@ -46,26 +45,24 @@ class TableViewController: UIViewController, WCSessionDelegate {
             session.activate()
         }
     }
-   
-
+    
+    
     
     // MARK: WCSession That receives message from Phone
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         
-        if message.count == 2 {
+        for contact in message {
+            let number = contact.key
+            let name = contact.value
             
-            // Receive messages from watch
-            
-            guard let recipNumberString = message["PhoneNumber"] else {return}
-            guard let recipNameString = message["RecipientName"] else {return}
             //Combines String into Name and Phone number
             
-            let tableViewContact = ("\(recipNameString) \(recipNumberString)")
+            let tableViewContact = ("\(name) \(number)")
             
             
             // Split String into first name and last name
             
-            let fullName = ("\(recipNameString)")
+            let fullName = ("\(name)")
             let fullNameArr = fullName.components(separatedBy: " ")
             
             let firstName = fullNameArr[0]
@@ -77,67 +74,21 @@ class TableViewController: UIViewController, WCSessionDelegate {
             newContact.givenName = ("\(firstName)")
             newContact.familyName = ("\(lastName)")
             
-            let number = CNPhoneNumber(stringValue: ("\(recipNumberString)"))
+            let newNumber = CNPhoneNumber(stringValue: ("\(number)"))
             
-            newContact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMobile, value: number)]
+            newContact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMobile, value: newNumber)]
             
             let store = CNContactStore()
             let saveRequest = CNSaveRequest()
             saveRequest.add(newContact, toContainerWithIdentifier:nil)
             try! store.execute(saveRequest)
             add(contact: tableViewContact)
-            
-        } else {
-            
-            var messageCount = 0
-            messageCount = message.count / 2
-            print(messageCount)
-            
-            var recipNumberString = ""
-            var recipNameString = ""
-            
-            for number in 1...messageCount {
-                
-                recipNumberString = message["numberString\(number)"] as! String
-                recipNameString = message["fullNameString\(number)"] as! String
-                
-                //Combines String into Name and Phone number
-                
-                let tableViewContact = ("\(recipNameString) \(recipNumberString)")
-                
-                let fullName = ("\(recipNameString)")
-                let fullNameArr = fullName.components(separatedBy: " ")
-                
-                let firstName = fullNameArr[0]
-                let lastName = fullNameArr[1]
-                
-                // Creates New Contact
-                
-                let newContact = CNMutableContact()
-                newContact.givenName = ("\(firstName)")
-                newContact.familyName = ("\(lastName)")
-                
-                let number = CNPhoneNumber(stringValue: ("\(recipNumberString)"))
-                
-                newContact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMobile, value: number)]
-                
-                let store = CNContactStore()
-                let saveRequest = CNSaveRequest()
-                saveRequest.add(newContact, toContainerWithIdentifier:nil)
-                try! store.execute(saveRequest)
-                
-                add(contact: tableViewContact)
-            }
-            
         }
-        
-        
-        
         
     }
     
     func add(contact: String) {
-
+        
         let index = 0
         contacts.insert(contact, at: index)
         
@@ -147,17 +98,17 @@ class TableViewController: UIViewController, WCSessionDelegate {
             print("Contains a value.")
             
         }
-  
+        
         print(contacts)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .left)
-        }
-
+    }
+    
 }
 
 
 extension TableViewController: UITableViewDataSource {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -185,11 +136,5 @@ extension TableViewController: UITableViewDataSource {
         }
         
     }
-    
-    
-    
-    
-    
-    
     
 }

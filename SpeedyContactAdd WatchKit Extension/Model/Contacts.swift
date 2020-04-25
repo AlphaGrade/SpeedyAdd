@@ -8,16 +8,22 @@
 
 import UIKit
 
-extension InterfaceController {
 struct Contacts {
     let name: String
     let phoneNumber: Any
+    let longitude: String
+    let latitude: String
+    let date: Date
     
     func convertToDictionary() -> [String:Any] {
         
-    let contactToSend = ["RecipientName":name, "PhoneNumber":phoneNumber]
+        let contactToSend = ["recipientName":name,
+                             "phoneNumber":phoneNumber,
+                             "longitude":longitude,
+                             "latitude":latitude, "date":date ]
+        
         return contactToSend
         
         }
     }
-}
+

@@ -162,7 +162,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             timer.invalidate()
             
-            
         } else {
             
             timer = Timer.scheduledTimer(timeInterval: 150, target: self, selector: #selector(InterfaceController.uploadTempContacts), userInfo: nil, repeats: true)

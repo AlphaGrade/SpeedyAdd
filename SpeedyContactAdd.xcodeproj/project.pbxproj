@@ -161,9 +161,9 @@
 		409578C21D3A9EE3004C0680 /* SpeedyContactAdd WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D780CF3D2197380600992A14 /* Controller */,
 				D780CF3B219737F800992A14 /* Model */,
 				D780CF3C2197380100992A14 /* View */,
+				D780CF3D2197380600992A14 /* Controller */,
 				4095789E1D3A9EE2004C0680 /* Products */,
 				409578CF1D3A9EE3004C0680 /* Assets.xcassets */,
 				409578D11D3A9EE3004C0680 /* Info.plist */,
