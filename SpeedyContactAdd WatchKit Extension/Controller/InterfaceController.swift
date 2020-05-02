@@ -127,9 +127,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         if (WCSession.default.isReachable) {
 
             let message = Contacts.init(name: RecipNameString,
-                                        phoneNumber: NumberStore, longitude: <#String#>,
-                                        longitude: ,
-                                        latitude: , date: <#Date#>).convertToDictionary()
+                                        phoneNumber: NumberStore, longitude: <#String#>, latitude: <#String#>, date: <#Date#>).convertToDictionary()
             WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: nil)
 
         } else {
