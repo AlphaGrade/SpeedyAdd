@@ -28,8 +28,9 @@
 		D722811C245CDDC700B6C618 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D722811B245CDDC700B6C618 /* Contacts.storyboard */; };
 		D722811E245CE45800B6C618 /* ContactsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */; };
 		D76065002453CCBA00E652EE /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76064FF2453CCBA00E652EE /* DateHelper.swift */; };
-		D76065022453CCD400E652EE /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76065012453CCD400E652EE /* LocationHelper.swift */; };
 		D780CF3F219738A700992A14 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D780CF3E219738A700992A14 /* Contacts.swift */; };
+		D7A0AA67246499B80042EB88 /* MapkitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A0AA66246499B80042EB88 /* MapkitHelper.swift */; };
+		D7BC8A74246480D70076477F /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8A73246480D70076477F /* Contacts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,8 +102,9 @@
 		D722811B245CDDC700B6C618 /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDetailViewController.swift; sourceTree = "<group>"; };
 		D76064FF2453CCBA00E652EE /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		D76065012453CCD400E652EE /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		D780CF3E219738A700992A14 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		D7A0AA66246499B80042EB88 /* MapkitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitHelper.swift; sourceTree = "<group>"; };
+		D7BC8A73246480D70076477F /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,8 @@
 		D7228111245CDAE800B6C618 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D76064FF2453CCBA00E652EE /* DateHelper.swift */,
+				D7A0AA66246499B80042EB88 /* MapkitHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -238,6 +242,7 @@
 		D7228114245CDB0200B6C618 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D7BC8A73246480D70076477F /* Contacts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,8 +250,6 @@
 		D76064FE2453CC9A00E652EE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				D76064FF2453CCBA00E652EE /* DateHelper.swift */,
-				D76065012453CCD400E652EE /* LocationHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -426,8 +429,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7A0AA67246499B80042EB88 /* MapkitHelper.swift in Sources */,
 				409578A31D3A9EE2004C0680 /* ViewController.swift in Sources */,
 				D722811E245CE45800B6C618 /* ContactsDetailViewController.swift in Sources */,
+				D7BC8A74246480D70076477F /* Contacts.swift in Sources */,
 				409578A11D3A9EE2004C0680 /* AppDelegate.swift in Sources */,
 				D722811A245CDDAC00B6C618 /* ContactsTableViewController.swift in Sources */,
 				4055130C1E95555400A75D9C /* Model.xcdatamodeld in Sources */,
@@ -438,7 +443,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D76065022453CCD400E652EE /* LocationHelper.swift in Sources */,
 				409059DF1D7DC90100411DCD /* NotificationController.swift in Sources */,
 				409578C81D3A9EE3004C0680 /* ExtensionDelegate.swift in Sources */,
 				D780CF3F219738A700992A14 /* Contacts.swift in Sources */,

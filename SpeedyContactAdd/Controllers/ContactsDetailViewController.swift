@@ -7,24 +7,33 @@
 //
 
 import UIKit
+import MapKit
 
 class ContactsDetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var dateAddedTextField: UITextField!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    var contact: Contacts?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Action Items
+    func updateViews() {
+        guard let contact = contact else {return}
+        nameTextField.text = contact.name
+        phoneTextField.text = contact.phoneNumber
+        dateAddedTextField.text = contact.date
+        let initialLocation = CLLocation(latitude: contact.latitude, longitude: contact.longitude)
+        mapView.centerToLocation(initialLocation)
+        
     }
-    */
-
+        
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
 }

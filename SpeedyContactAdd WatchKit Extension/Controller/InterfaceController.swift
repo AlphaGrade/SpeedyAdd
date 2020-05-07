@@ -34,8 +34,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet weak var lblReName: WKInterfaceLabel!
     
     
-    var NumberStore = String()
-    var RecipNameString = String() 
+    var numberStore = String()
+    var recipNameString = String()
+    var date = Date()
     var identifierInt : Int = 1
     var contactTempStore : [String:String] = [:]
     var fullNameString = "fullNameString"
@@ -43,12 +44,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var timer = Timer()
     
     func numberAdd(myCharacter:String) {
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)
+        numberStore += myCharacter
+        lblPhoneNumber.setText(numberStore)
     }
     func clearItems() {
-        NumberStore = ""
-        RecipNameString = ""
+        numberStore = ""
+        recipNameString = ""
         lblReName.setText("Contact Name")
         lblPhoneNumber.setText("")
     }
@@ -85,9 +86,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         numberAdd(myCharacter: "0")
     }
     @IBAction func btnBackspaceAction() {
-        if NumberStore != "" {
-        NumberStore.remove(at: NumberStore.index(before: NumberStore.endIndex))
-        lblPhoneNumber.setText("\(NumberStore)")
+        if numberStore != "" {
+        numberStore.remove(at: numberStore.index(before: numberStore.endIndex))
+        lblPhoneNumber.setText("\(numberStore)")
         } else {return}
     }
     // MARK: - Force Push button resets all
@@ -100,7 +101,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (result) in
             guard let result = result else {return}
             let resultString = result[0] as! String
-            self.RecipNameString = resultString
+            self.recipNameString = resultString
             self.lblReName.setText("\(resultString)")
         }
     }
@@ -120,21 +121,26 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
     @IBAction func btnSendtoPhone() {
         
-        if RecipNameString == "" || NumberStore == "" {return}
+        if recipNameString == "" || numberStore == "" {return}
         
     // TODO: - Add in a notification that states one of these is blank.
 
         if (WCSession.default.isReachable) {
 
-            let message = Contacts.init(name: RecipNameString,
-                                        phoneNumber: NumberStore, longitude: <#String#>, latitude: <#String#>, date: <#Date#>).convertToDictionary()
-            WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: nil)
+            let message = Contacts.init(name: recipNameString, phoneNumber: numberStore, longitude: "", latitude: "", date: date)
+            // TODO: - convert struct to Data for transmission via WCSession
+            
+            let messageData =
+                WCSession.default.sendMessageData(Data, replyHandler: messageData) { (error) in
+                    
+                    print(error)
+            }
 
         } else {
 //   If WCSession isn't reachable, store contact on watch until phone is reachable.
             tempStoreUniqueKeyGen()
-                contactTempStore["\(fullNameString)"] = RecipNameString
-                contactTempStore["\(numberString)"] = NumberStore
+                contactTempStore["\(fullNameString)"] = recipNameString
+                contactTempStore["\(numberString)"] = numberStore
                 fullNameString = "fullNameString"
                 numberString = "numberString"
                 print ("\(contactTempStore)")
@@ -145,9 +151,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
         DispatchQueue.main.async {
                 if (WCSession.default.isReachable) {
-                    self.notifyUserAfterSave(inRange: true, UUID: self.stringWithUUID(), contactName: self.RecipNameString)
+                    self.notifyUserAfterSave(inRange: true, UUID: self.stringWithUUID(), contactName: self.recipNameString)
                 } else if (!WCSession.default.isReachable){
-                    self.notifyUserAfterSave(inRange: false, UUID: self.stringWithUUID(), contactName: self.RecipNameString)
+                    self.notifyUserAfterSave(inRange: false, UUID: self.stringWithUUID(), contactName: self.recipNameString)
                 }
                 // MARK: Reset Strings for next contact upload
             self.clearItems()

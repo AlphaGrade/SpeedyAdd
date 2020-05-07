@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSContactsUsageDescription</key>
 	<string>SpeedyAdd app needs access to Contacts to add new contact</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SpeedyAdd requires consent to location services to display map</string>
 	<key>UIBackgroundModes</key>
 	<array/>
 	<key>UILaunchStoryboardName</key>

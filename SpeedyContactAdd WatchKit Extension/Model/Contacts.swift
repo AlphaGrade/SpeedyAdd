@@ -9,10 +9,11 @@
 import UIKit
 
 struct Contacts {
+    let id: Any
     let name: String
-    let phoneNumber: Any
-    let longitude: String
-    let latitude: String
+    let phoneNumber: String
+    let longitude: Double
+    let latitude: Double
     let date: Date
     
     func convertToDictionary() -> [String:Any] {
@@ -20,10 +21,14 @@ struct Contacts {
         let contactToSend = ["recipientName":name,
                              "phoneNumber":phoneNumber,
                              "longitude":longitude,
-                             "latitude":latitude, "date":date ]
+                             "latitude":latitude, "date":date, "id":id ]
         
         return contactToSend
         
-        }
     }
+    
+//    func convertToData() -> Data {
+//        
+//    }
+}
 
