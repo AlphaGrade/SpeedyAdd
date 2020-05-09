@@ -9,7 +9,7 @@
 import WatchKit
 import WatchConnectivity
 import UIKit
-import MapKit
+import CoreLocation
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
@@ -126,8 +126,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // TODO: - Add in a notification that states one of these is blank.
 
         if (WCSession.default.isReachable) {
-
-            let message = Contacts.init(name: recipNameString, phoneNumber: numberStore, longitude: "", latitude: "", date: date)
+            let location = CLLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees)
+            let message = Contacts.init(id: UUID().uuidString, name: recipNameString, phoneNumber: numberStore, longitude: "", latitude: "", date: date)
             // TODO: - convert struct to Data for transmission via WCSession
             
             let messageData =

@@ -14,20 +14,13 @@ import UserNotifications
 class ContactsTableViewController: UITableViewController {
     
     func sessionDidBecomeInactive(_ session: WCSession) {
-        
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        
     }
-    
-    // MARK: Table View Declaration
-    
-    
     var session: WCSession!
     var window: UIWindow?
     
@@ -40,13 +33,11 @@ class ContactsTableViewController: UITableViewController {
         super.viewDidLoad()
         if WCSession.isSupported() {
             let session = WCSession.default
-            session.delegate = self as! WCSessionDelegate
+            session.delegate = self as? WCSessionDelegate
             session.activate()
         }
     }
-    
-    
-    
+
     // MARK: WCSession That receives message from Phone
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         
@@ -83,11 +74,9 @@ class ContactsTableViewController: UITableViewController {
             try! store.execute(saveRequest)
             add(contact: tableViewContact)
         }
-        
     }
-    
+    // Adds contact to TableView
     func add(contact: String) {
-        
         let index = 0
         contacts.insert(contact, at: index)
         
@@ -95,42 +84,34 @@ class ContactsTableViewController: UITableViewController {
             print("doesn't contain a value!")
         } else {
             print("Contains a value.")
-            
         }
-        
         print(contacts)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .left)
     }
     
+    // MARK: Table View Declaration
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
     }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         DispatchQueue.main.async {
             let contact = self.contacts[indexPath.row]
             cell.textLabel?.text = contact
-            
         }
         return cell
-        
     }
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             guard editingStyle == .delete else { return }
             self.contacts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        
     }
-    
 }
 
 

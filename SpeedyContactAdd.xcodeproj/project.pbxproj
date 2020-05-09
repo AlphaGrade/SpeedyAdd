@@ -11,7 +11,6 @@
 		4055130E1E9555D500A75D9C /* DataController in Resources */ = {isa = PBXBuildFile; fileRef = 4055130D1E9555D500A75D9C /* DataController */; };
 		409059DF1D7DC90100411DCD /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578C91D3A9EE3004C0680 /* NotificationController.swift */; };
 		409578A11D3A9EE2004C0680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578A01D3A9EE2004C0680 /* AppDelegate.swift */; };
-		409578A31D3A9EE2004C0680 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578A21D3A9EE2004C0680 /* ViewController.swift */; };
 		409578A81D3A9EE2004C0680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409578A71D3A9EE2004C0680 /* Assets.xcassets */; };
 		409578AB1D3A9EE2004C0680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 409578A91D3A9EE2004C0680 /* LaunchScreen.storyboard */; };
 		409578B01D3A9EE2004C0680 /* SpeedyContactAdd WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 409578AF1D3A9EE2004C0680 /* SpeedyContactAdd WatchKit App.app */; };
@@ -27,6 +26,7 @@
 		D722811A245CDDAC00B6C618 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7228119245CDDAC00B6C618 /* ContactsTableViewController.swift */; };
 		D722811C245CDDC700B6C618 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D722811B245CDDC700B6C618 /* Contacts.storyboard */; };
 		D722811E245CE45800B6C618 /* ContactsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */; };
+		D732FEB924663FB700F96C61 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D732FEB824663FB700F96C61 /* LocationHelper.swift */; };
 		D76065002453CCBA00E652EE /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76064FF2453CCBA00E652EE /* DateHelper.swift */; };
 		D780CF3F219738A700992A14 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D780CF3E219738A700992A14 /* Contacts.swift */; };
 		D7A0AA67246499B80042EB88 /* MapkitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A0AA66246499B80042EB88 /* MapkitHelper.swift */; };
@@ -80,7 +80,6 @@
 		4055130D1E9555D500A75D9C /* DataController */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataController; sourceTree = "<group>"; };
 		4095789D1D3A9EE2004C0680 /* SpeedyContactAdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedyContactAdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409578A01D3A9EE2004C0680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		409578A21D3A9EE2004C0680 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		409578A71D3A9EE2004C0680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409578AA1D3A9EE2004C0680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		409578AC1D3A9EE2004C0680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		D7228119245CDDAC00B6C618 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 		D722811B245CDDC700B6C618 /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDetailViewController.swift; sourceTree = "<group>"; };
+		D732FEB824663FB700F96C61 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		D76064FF2453CCBA00E652EE /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		D780CF3E219738A700992A14 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		D7A0AA66246499B80042EB88 /* MapkitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitHelper.swift; sourceTree = "<group>"; };
@@ -225,7 +225,6 @@
 		D7228112245CDAF400B6C618 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				409578A21D3A9EE2004C0680 /* ViewController.swift */,
 				D7228119245CDDAC00B6C618 /* ContactsTableViewController.swift */,
 				D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */,
 			);
@@ -250,6 +249,7 @@
 		D76064FE2453CC9A00E652EE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D732FEB824663FB700F96C61 /* LocationHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -430,7 +430,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7A0AA67246499B80042EB88 /* MapkitHelper.swift in Sources */,
-				409578A31D3A9EE2004C0680 /* ViewController.swift in Sources */,
 				D722811E245CE45800B6C618 /* ContactsDetailViewController.swift in Sources */,
 				D7BC8A74246480D70076477F /* Contacts.swift in Sources */,
 				409578A11D3A9EE2004C0680 /* AppDelegate.swift in Sources */,
@@ -443,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D732FEB924663FB700F96C61 /* LocationHelper.swift in Sources */,
 				409059DF1D7DC90100411DCD /* NotificationController.swift in Sources */,
 				409578C81D3A9EE3004C0680 /* ExtensionDelegate.swift in Sources */,
 				D780CF3F219738A700992A14 /* Contacts.swift in Sources */,
