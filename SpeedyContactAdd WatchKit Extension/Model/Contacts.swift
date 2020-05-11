@@ -8,24 +8,12 @@
 
 import UIKit
 
-struct Contacts {
-    let id: Any
+struct Contacts: Codable {
     let name: String
     let phoneNumber: String
     let longitude: Double
     let latitude: Double
     let date: Date
-    
-    func convertToDictionary() -> [String:Any] {
-        
-        let contactToSend = ["recipientName":name,
-                             "phoneNumber":phoneNumber,
-                             "longitude":longitude,
-                             "latitude":latitude, "date":date, "id":id ]
-        
-        return contactToSend
-        
-    }
     
 //    func convertToData() -> Data {
 //        

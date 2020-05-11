@@ -126,16 +126,15 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // TODO: - Add in a notification that states one of these is blank.
 
         if (WCSession.default.isReachable) {
-            let location = CLLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees)
-            let message = Contacts.init(id: UUID().uuidString, name: recipNameString, phoneNumber: numberStore, longitude: "", latitude: "", date: date)
+            let location = getLocation()
+            let message = Contacts.init(name: recipNameString, phoneNumber: numberStore, longitude: location.0, latitude: location.1, date: location.2)
+        
             // TODO: - convert struct to Data for transmission via WCSession
-            
-            let messageData =
-                WCSession.default.sendMessageData(Data, replyHandler: messageData) { (error) in
-                    
-                    print(error)
-            }
-
+            let encoder = JSONEncoder()
+            let data = (try? encoder.encode(message))!
+          
+            WCSession.default.sendMessageData(data, replyHandler: { (Data) in
+                }, errorHandler: nil)
         } else {
 //   If WCSession isn't reachable, store contact on watch until phone is reachable.
             tempStoreUniqueKeyGen()
