@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4055130C1E95555400A75D9C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4055130A1E95555400A75D9C /* Model.xcdatamodeld */; };
 		4055130E1E9555D500A75D9C /* DataController in Resources */ = {isa = PBXBuildFile; fileRef = 4055130D1E9555D500A75D9C /* DataController */; };
 		409059DF1D7DC90100411DCD /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578C91D3A9EE3004C0680 /* NotificationController.swift */; };
 		409578A11D3A9EE2004C0680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578A01D3A9EE2004C0680 /* AppDelegate.swift */; };
@@ -76,7 +75,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4055130B1E95555400A75D9C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4055130D1E9555D500A75D9C /* DataController */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataController; sourceTree = "<group>"; };
 		4095789D1D3A9EE2004C0680 /* SpeedyContactAdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedyContactAdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409578A01D3A9EE2004C0680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				D7228111245CDAE800B6C618 /* Helpers */,
 				D7228110245CDAD900B6C618 /* Storyboards */,
 				409578A01D3A9EE2004C0680 /* AppDelegate.swift */,
-				4055130A1E95555400A75D9C /* Model.xcdatamodeld */,
 				409578A71D3A9EE2004C0680 /* Assets.xcassets */,
 				409578AC1D3A9EE2004C0680 /* Info.plist */,
 				4055130D1E9555D500A75D9C /* DataController */,
@@ -434,7 +431,6 @@
 				D7BC8A74246480D70076477F /* Contacts.swift in Sources */,
 				409578A11D3A9EE2004C0680 /* AppDelegate.swift in Sources */,
 				D722811A245CDDAC00B6C618 /* ContactsTableViewController.swift in Sources */,
-				4055130C1E95555400A75D9C /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,19 +744,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4055130A1E95555400A75D9C /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4055130B1E95555400A75D9C /* Model.xcdatamodel */,
-			);
-			currentVersion = 4055130B1E95555400A75D9C /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 409578951D3A9EE2004C0680 /* Project object */;
 }
