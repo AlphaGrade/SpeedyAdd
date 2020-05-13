@@ -38,16 +38,4 @@ class ContactsDetailViewController: UIViewController {
     }
 }
 
-//Credit - https://www.raywenderlich.com/7738344-mapkit-tutorial-getting-started
-private extension MKMapView {
-    func centerToLocation(
-        _ location: CLLocation,
-        regionRadius: CLLocationDistance = 1000
-    ) {
-        let coordinateRegion = MKCoordinateRegion(
-            center: location.coordinate,
-            latitudinalMeters: regionRadius,
-            longitudinalMeters: regionRadius)
-        setRegion(coordinateRegion, animated: true)
-    }
-}
+

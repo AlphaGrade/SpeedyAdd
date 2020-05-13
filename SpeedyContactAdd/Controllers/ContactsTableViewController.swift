@@ -12,21 +12,15 @@ import WatchConnectivity
 import UserNotifications
 
 class ContactsTableViewController: UITableViewController {
-    
-    func sessionDidBecomeInactive(_ session: WCSession) {
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-    }
+
     var session: WCSession!
     var window: UIWindow?
     
-    var numberContact = String()
-    var contacts = [String]()
-    var contact = String()
+    var contacts = [Contacts]()
+    
+//    var numberContact = String()
+//    var contacts = [String]()
+//    var contact = String()
     
     // Establishes WCSession to Watch
     override func viewDidLoad() {
@@ -36,6 +30,28 @@ class ContactsTableViewController: UITableViewController {
             session.delegate = self as? WCSessionDelegate
             session.activate()
         }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    }
+    // MARK: Receive Message Data from WatchOS
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        let decoder = JSONDecoder()
+        do {
+            let contactData = try decoder.decode([Contacts].self, from: messageData)
+            for contact in contactData {
+                       contacts.append(contact)
+                   }
+        } catch {
+            print("Error decoding data: \(error)")
+        }
+       
     }
 
     // MARK: WCSession That receives message from Phone

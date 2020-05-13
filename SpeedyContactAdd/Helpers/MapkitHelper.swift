@@ -9,7 +9,7 @@
 import MapKit
 
     // Credit - https://www.raywenderlich.com/7738344-mapkit-tutorial-getting-started
-private extension MKMapView {
+    extension MKMapView {
     func centerToLocation(
         _ location: CLLocation,
         regionRadius: CLLocationDistance = 1000

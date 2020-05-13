@@ -127,11 +127,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
         if (WCSession.default.isReachable) {
             let location = getLocation()
-            let message = Contacts.init(name: recipNameString, phoneNumber: numberStore, longitude: location.0, latitude: location.1, date: location.2)
+            let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, longitude: location.0, latitude: location.1, date: location.2)
         
             // TODO: - convert struct to Data for transmission via WCSession
             let encoder = JSONEncoder()
-            let data = (try? encoder.encode(message))!
+            let data = (try? encoder.encode(contactData))!
           
             WCSession.default.sendMessageData(data, replyHandler: { (Data) in
                 }, errorHandler: nil)

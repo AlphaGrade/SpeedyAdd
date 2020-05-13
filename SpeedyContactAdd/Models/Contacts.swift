@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct Contacts {
-    let id: Any
+struct Contacts: Codable {
     let name: String
     let phoneNumber: String
     let longitude: Double
