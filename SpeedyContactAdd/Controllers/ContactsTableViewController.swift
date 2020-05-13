@@ -15,12 +15,7 @@ class ContactsTableViewController: UITableViewController {
 
     var session: WCSession!
     var window: UIWindow?
-    
     var contacts = [Contacts]()
-    
-//    var numberContact = String()
-//    var contacts = [String]()
-//    var contact = String()
     
     // Establishes WCSession to Watch
     override func viewDidLoad() {
@@ -30,6 +25,7 @@ class ContactsTableViewController: UITableViewController {
             session.delegate = self as? WCSessionDelegate
             session.activate()
         }
+        testContact()
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
@@ -53,71 +49,27 @@ class ContactsTableViewController: UITableViewController {
         }
        
     }
-
-    // MARK: WCSession That receives message from Phone
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        
-        for contact in message {
-            let number = contact.key
-            let name = contact.value
-            
-            //Combines String into Name and Phone number
-            
-            let tableViewContact = ("\(name) \(number)")
-            
-            
-            // Split String into first name and last name
-            
-            let fullName = ("\(name)")
-            let fullNameArr = fullName.components(separatedBy: " ")
-            
-            let firstName = fullNameArr[0]
-            let lastName = fullNameArr[1]
-            
-            // Create New Contact
-            
-            let newContact = CNMutableContact()
-            newContact.givenName = ("\(firstName)")
-            newContact.familyName = ("\(lastName)")
-            
-            let newNumber = CNPhoneNumber(stringValue: ("\(number)"))
-            
-            newContact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMobile, value: newNumber)]
-            
-            let store = CNContactStore()
-            let saveRequest = CNSaveRequest()
-            saveRequest.add(newContact, toContainerWithIdentifier:nil)
-            try! store.execute(saveRequest)
-            add(contact: tableViewContact)
-        }
-    }
-    // Adds contact to TableView
-    func add(contact: String) {
-        let index = 0
-        contacts.insert(contact, at: index)
-        
-        if tableView == nil {
-            print("doesn't contain a value!")
-        } else {
-            print("Contains a value.")
-        }
-        print(contacts)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .left)
-    }
     
-    // MARK: Table View Declaration
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func testContact() {
+        let aaron = Contacts(name: "Tommy Tutone",
+                             phoneNumber: "3128675309",
+                             longitude: 41.89,
+                             latitude: -89.62,
+                             date: "05/12/20")
+        contacts.append(aaron)
     }
+
+
+    // MARK: Table View Declaration
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") else {return UITableViewCell()}
         DispatchQueue.main.async {
             let contact = self.contacts[indexPath.row]
-            cell.textLabel?.text = contact
+            cell.textLabel?.text = contact.name
         }
         return cell
     }
@@ -128,7 +80,17 @@ class ContactsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+
+
+// MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToDetail" {
+// TODO: - Fix Segue. It's not moving the contact over to the Detail Controller
+            if let indexPath = tableView.indexPathForSelectedRow, let vc = segue.destination as? ContactsDetailViewController {
+                vc.contact = contacts[indexPath.row]
+            }
+        }
+    }
 }
-
-
 
