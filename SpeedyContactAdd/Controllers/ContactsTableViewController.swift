@@ -53,8 +53,8 @@ class ContactsTableViewController: UITableViewController {
     func testContact() {
         let aaron = Contacts(name: "Tim Apple",
                              phoneNumber: "3128675309",
-                             longitude: 37.332279,
-                             latitude: -122.010979,
+                             latitude: 37.332279,
+                             longitude: -122.010979,
                              date: "05/12/20")
         contacts.append(aaron)
     }

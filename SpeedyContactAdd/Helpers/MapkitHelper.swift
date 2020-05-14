@@ -5,7 +5,7 @@
 //  Created by Joe on 5/7/20.
 //  Copyright © 2020 AlphaGradeINC. All rights reserved.
 //
-
+import Foundation
 import MapKit
 
 // Credit - https://www.raywenderlich.com/7738344-mapkit-tutorial-getting-started
@@ -19,5 +19,9 @@ extension MKMapView {
             latitudinalMeters: regionRadius,
             longitudinalMeters: regionRadius)
         setRegion(coordinateRegion, animated: true)
+        let pin = MKPointAnnotation()
+        pin.coordinate = location.coordinate
+        pin.title = "Where contact was recorded"
+        
     }
 }

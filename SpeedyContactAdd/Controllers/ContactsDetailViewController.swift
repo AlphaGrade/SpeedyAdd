@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class ContactsDetailViewController: UIViewController {
     
@@ -28,9 +29,8 @@ class ContactsDetailViewController: UIViewController {
         nameTextField.text = contact.name
         phoneTextField.text = contact.phoneNumber
         dateAddedTextField.text = contact.date
-        let initialLocation = CLLocation(latitude: contact.latitude, longitude: contact.longitude)
-        mapView.centerToLocation(initialLocation)
-        
+        let location = CLLocation(latitude: contact.latitude, longitude: contact.longitude)
+        mapView.centerToLocation(location)
     }
     
 }
