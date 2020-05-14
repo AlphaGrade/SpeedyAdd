@@ -51,10 +51,10 @@ class ContactsTableViewController: UITableViewController {
     }
     
     func testContact() {
-        let aaron = Contacts(name: "Tommy Tutone",
+        let aaron = Contacts(name: "Tim Apple",
                              phoneNumber: "3128675309",
-                             longitude: 41.89,
-                             latitude: -89.62,
+                             longitude: 37.332279,
+                             latitude: -122.010979,
                              date: "05/12/20")
         contacts.append(aaron)
     }
@@ -83,10 +83,8 @@ class ContactsTableViewController: UITableViewController {
 
 
 // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToDetail" {
-// TODO: - Fix Segue. It's not moving the contact over to the Detail Controller
             if let indexPath = tableView.indexPathForSelectedRow, let vc = segue.destination as? ContactsDetailViewController {
                 vc.contact = contacts[indexPath.row]
             }

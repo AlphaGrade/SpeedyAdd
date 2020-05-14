@@ -33,9 +33,6 @@ class ContactsDetailViewController: UIViewController {
         
     }
     
-    @IBAction func doneButtonPressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
 }
 
 

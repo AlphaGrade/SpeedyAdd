@@ -8,13 +8,13 @@
 
 import MapKit
 
-    // Credit - https://www.raywenderlich.com/7738344-mapkit-tutorial-getting-started
-    extension MKMapView {
+// Credit - https://www.raywenderlich.com/7738344-mapkit-tutorial-getting-started
+extension MKMapView {
     func centerToLocation(
         _ location: CLLocation,
         regionRadius: CLLocationDistance = 1000
     ) {
-        let coordinateRegion = MKCoordinateRegion(
+        let coordinateRegion = MKCoordinateRegion (
             center: location.coordinate,
             latitudinalMeters: regionRadius,
             longitudinalMeters: regionRadius)

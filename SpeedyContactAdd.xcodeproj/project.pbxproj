@@ -21,7 +21,6 @@
 		409578CC1D3A9EE3004C0680 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578CB1D3A9EE3004C0680 /* GlanceController.swift */; };
 		409578CE1D3A9EE3004C0680 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578CD1D3A9EE3004C0680 /* ComplicationController.swift */; };
 		409578D01D3A9EE3004C0680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409578CF1D3A9EE3004C0680 /* Assets.xcassets */; };
-		D7228118245CDD8500B6C618 /* ContactDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7228117245CDD8500B6C618 /* ContactDetails.storyboard */; };
 		D722811A245CDDAC00B6C618 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7228119245CDDAC00B6C618 /* ContactsTableViewController.swift */; };
 		D722811C245CDDC700B6C618 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D722811B245CDDC700B6C618 /* Contacts.storyboard */; };
 		D722811E245CE45800B6C618 /* ContactsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */; };
@@ -94,7 +93,6 @@
 		409578CD1D3A9EE3004C0680 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		409578CF1D3A9EE3004C0680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409578D11D3A9EE3004C0680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7228117245CDD8500B6C618 /* ContactDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactDetails.storyboard; sourceTree = "<group>"; };
 		D7228119245CDDAC00B6C618 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 		D722811B245CDDC700B6C618 /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDetailViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				D722811B245CDDC700B6C618 /* Contacts.storyboard */,
-				D7228117245CDD8500B6C618 /* ContactDetails.storyboard */,
 				409578A91D3A9EE2004C0680 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -395,7 +392,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4055130E1E9555D500A75D9C /* DataController in Resources */,
-				D7228118245CDD8500B6C618 /* ContactDetails.storyboard in Resources */,
 				409578AB1D3A9EE2004C0680 /* LaunchScreen.storyboard in Resources */,
 				D722811C245CDDC700B6C618 /* Contacts.storyboard in Resources */,
 				409578A81D3A9EE2004C0680 /* Assets.xcassets in Resources */,
