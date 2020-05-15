@@ -8,7 +8,6 @@
 import Foundation
 import MapKit
 
-// Credit - https://www.raywenderlich.com/7738344-mapkit-tutorial-getting-started
 extension MKMapView {
     func centerToLocation(
         _ location: CLLocation,
@@ -22,6 +21,6 @@ extension MKMapView {
         let pin = MKPointAnnotation()
         pin.coordinate = location.coordinate
         pin.title = "Where contact was recorded"
-        
+        addAnnotation(pin)
     }
 }
