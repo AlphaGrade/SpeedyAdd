@@ -26,9 +26,10 @@ class ContactsDetailViewController: UIViewController {
     // MARK: - Action Items
     func updateViews() {
         guard let contact = contact else {return}
+        let theDate = contact.convertDateToString(date: contact.date)
         nameTextField.text = contact.name
         phoneTextField.text = contact.phoneNumber
-        dateAddedTextField.text = contact.date
+        dateAddedTextField.text = theDate
         let location = CLLocation(latitude: contact.latitude, longitude: contact.longitude)
         mapView.centerToLocation(location)
     }

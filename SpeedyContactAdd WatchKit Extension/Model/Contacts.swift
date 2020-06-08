@@ -11,12 +11,8 @@ import UIKit
 struct Contacts: Codable {
     let name: String
     let phoneNumber: String
-    let longitude: Double
     let latitude: Double
+    let longitude: Double
     let date: Date
-    
-//    func convertToData() -> Data {
-//        
-//    }
 }
 

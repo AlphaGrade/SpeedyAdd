@@ -8,12 +8,9 @@
 
 import WatchKit
 import WatchConnectivity
-import UIKit
 import CoreLocation
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
-    
-   var session:WCSession!
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
@@ -33,7 +30,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
     @IBOutlet weak var lblReName: WKInterfaceLabel!
     
-    
+    var session:WCSession!
+//    let findLocationHelper = FindLocationHelper()
     var numberStore = String()
     var recipNameString = String()
     var date = Date()
@@ -87,13 +85,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     @IBAction func btnBackspaceAction() {
         if numberStore != "" {
-        numberStore.remove(at: numberStore.index(before: numberStore.endIndex))
-        lblPhoneNumber.setText("\(numberStore)")
+            numberStore.remove(at: numberStore.index(before: numberStore.endIndex))
+            lblPhoneNumber.setText("\(numberStore)")
         } else {return}
     }
     // MARK: - Force Push button resets all
     @IBAction func btnMenuClear() {
-            clearItems()
+        clearItems()
     }
     
     // MARK: add name to RecipNameStrings
@@ -123,44 +121,41 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         if recipNameString == "" || numberStore == "" {return}
         
-    // TODO: - Add in a notification that states one of these is blank.
-
+        // TODO: - Add in a notification that states one of these is blank.
+        
         if (WCSession.default.isReachable) {
             let location = getLocation()
-            let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, longitude: location.0, latitude: location.1, date: location.2)
-        
-            // TODO: - convert struct to Data for transmission via WCSession
+            let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
             let encoder = JSONEncoder()
             let data = (try? encoder.encode(contactData))!
-          
-            WCSession.default.sendMessageData(data, replyHandler: { (Data) in
-                }, errorHandler: nil)
-        } else {
-//   If WCSession isn't reachable, store contact on watch until phone is reachable.
-            tempStoreUniqueKeyGen()
-                contactTempStore["\(fullNameString)"] = recipNameString
-                contactTempStore["\(numberString)"] = numberStore
-                fullNameString = "fullNameString"
-                numberString = "numberString"
-                print ("\(contactTempStore)")
-                print("Session is not Reachable")
-                uploadTempContacts()
             
-            }
-    // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
+            WCSession.default.sendMessageData(data, replyHandler: { (Data) in
+            }, errorHandler: nil)
+        } else {
+            //   If WCSession isn't reachable, store contact on watch until phone is reachable.
+            tempStoreUniqueKeyGen()
+            contactTempStore["\(fullNameString)"] = recipNameString
+            contactTempStore["\(numberString)"] = numberStore
+            fullNameString = "fullNameString"
+            numberString = "numberString"
+            print ("\(contactTempStore)")
+            print("Session is not Reachable")
+            uploadTempContacts()
+        }
+        // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
         DispatchQueue.main.async {
-                if (WCSession.default.isReachable) {
-                    self.notifyUserAfterSave(inRange: true, UUID: self.stringWithUUID(), contactName: self.recipNameString)
-                } else if (!WCSession.default.isReachable){
-                    self.notifyUserAfterSave(inRange: false, UUID: self.stringWithUUID(), contactName: self.recipNameString)
-                }
-                // MARK: Reset Strings for next contact upload
+            if (WCSession.default.isReachable) {
+                self.notifyUserAfterSave(inRange: true, UUID: self.stringWithUUID(), contactName: self.recipNameString)
+            } else if (!WCSession.default.isReachable){
+                self.notifyUserAfterSave(inRange: false, UUID: self.stringWithUUID(), contactName: self.recipNameString)
+            }
+            // MARK: Reset Strings for next contact upload
             self.clearItems()
         }
-    
+        
     }
-
-        // MARK: upload contacts stored temporarily
+    
+    // MARK: upload contacts stored temporarily
     @objc func uploadTempContacts() {
         if (WCSession.default.isReachable) && contactTempStore != [:] {
             

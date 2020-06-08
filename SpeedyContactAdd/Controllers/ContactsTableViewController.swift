@@ -25,7 +25,7 @@ class ContactsTableViewController: UITableViewController {
             session.delegate = self as? WCSessionDelegate
             session.activate()
         }
-        testContact()
+        //testContact()
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
@@ -47,17 +47,18 @@ class ContactsTableViewController: UITableViewController {
         } catch {
             print("Error decoding data: \(error)")
         }
-       
     }
     
-    func testContact() {
-        let aaron = Contacts(name: "Tim Apple",
-                             phoneNumber: "3128675309",
-                             latitude: 37.332279,
-                             longitude: -122.010979,
-                             date: "05/12/20")
-        contacts.append(aaron)
-    }
+    
+    
+//    func testContact() {
+//        let aaron = Contacts(name: "Tim Apple",
+//                             phoneNumber: "3128675309",
+//                             latitude: 37.332279,
+//                             longitude: -122.010979,
+//                             date: "05/12/20")
+//        contacts.append(aaron)
+//    }
 
 
     // MARK: Table View Declaration
@@ -91,4 +92,6 @@ class ContactsTableViewController: UITableViewController {
         }
     }
 }
+
+
 
