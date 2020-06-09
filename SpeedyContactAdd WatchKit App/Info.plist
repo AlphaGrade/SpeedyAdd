@@ -8,6 +8,8 @@
 	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added</string>
 	<key>NSLocationUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added</string>
 	<key>CFBundleDisplayName</key>
 	<string>SpeedyAdd</string>
 	<key>CFBundleExecutable</key>

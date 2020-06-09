@@ -7,6 +7,7 @@
 //
 
 import WatchKit
+import UIKit
 import WatchConnectivity
 import CoreLocation
 
@@ -168,5 +169,36 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             timer = Timer.scheduledTimer(timeInterval: 150, target: self, selector: #selector(InterfaceController.uploadTempContacts), userInfo: nil, repeats: true)
             
         }
+    }
+}
+
+extension InterfaceController: CLLocationManagerDelegate {
+    func getLocation() -> (Double, Double, Date) {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        manager.requestAlwaysAuthorization()
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        manager.startUpdatingLocation()
+        manager.requestLocation()
+        let latitude = manager.location?.coordinate.latitude ?? 0
+        let longitude = manager.location?.coordinate.longitude ?? 1
+        print("\(latitude) \(longitude)")
+        manager.stopUpdatingLocation()
+        let date = Date()
+        return (latitude, longitude, date)
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print(location.coordinate)
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("There was an error finding location: \(error)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        <#code#>
     }
 }
