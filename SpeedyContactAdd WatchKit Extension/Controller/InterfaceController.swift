@@ -146,9 +146,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
         DispatchQueue.main.async {
             if (WCSession.default.isReachable) {
-                self.notifyUserAfterSave(inRange: true, UUID: self.stringWithUUID(), contactName: self.recipNameString)
+                self.notifyUserAfterSave(inRange: true, UUID: UUID().uuidString, contactName: self.recipNameString)
             } else if (!WCSession.default.isReachable){
-                self.notifyUserAfterSave(inRange: false, UUID: self.stringWithUUID(), contactName: self.recipNameString)
+                self.notifyUserAfterSave(inRange: false, UUID: UUID().uuidString, contactName: self.recipNameString)
             }
             // MARK: Reset Strings for next contact upload
             self.clearItems()
@@ -172,33 +172,4 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
 }
 
-extension InterfaceController: CLLocationManagerDelegate {
-    func getLocation() -> (Double, Double, Date) {
-        let manager = CLLocationManager()
-        manager.delegate = self
-        manager.requestAlwaysAuthorization()
-        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        manager.startUpdatingLocation()
-        manager.requestLocation()
-        let latitude = manager.location?.coordinate.latitude ?? 0
-        let longitude = manager.location?.coordinate.longitude ?? 1
-        print("\(latitude) \(longitude)")
-        manager.stopUpdatingLocation()
-        let date = Date()
-        return (latitude, longitude, date)
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            print(location.coordinate)
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("There was an error finding location: \(error)")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        <#code#>
-    }
-}
+

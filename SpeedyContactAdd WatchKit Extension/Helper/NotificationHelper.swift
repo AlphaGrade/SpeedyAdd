@@ -15,12 +15,6 @@ extension InterfaceController {
         completionHandler([.alert, .sound])
     }
     
-    func stringWithUUID() -> String {
-        let uuidObj = CFUUIDCreate(nil)
-        let uuidString = CFUUIDCreateString(nil, uuidObj)!
-        return uuidString as String
-    }
-    
     func notifyUserAfterSave(inRange: Bool, UUID: String, contactName: String)  {
         // If WCSession is reachable, we notify stating contact has been sent to iOS
         if  inRange == true {
