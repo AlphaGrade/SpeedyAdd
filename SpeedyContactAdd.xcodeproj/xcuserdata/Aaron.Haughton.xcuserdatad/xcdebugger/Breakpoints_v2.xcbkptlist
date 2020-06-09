@@ -25,8 +25,8 @@
             filePath = "SpeedyContactAdd/Controllers/ContactsTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -82,17 +82,111 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6BE8A56A-9AF0-4C36-BFF9-ACFBDC600C98"
+            uuid = "42151B06-411D-4A35-8712-0F9022303B57"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpeedyContactAdd WatchKit Extension/Controller/InterfaceController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "178"
+            endingLineNumber = "178">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80208567-4C88-44C2-A147-82C8D601F18C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpeedyContactAdd WatchKit Extension/Controller/InterfaceController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "btnSendtoPhone()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A887C75-1BF4-48EC-B4FB-A0B413A12D04"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpeedyContactAdd WatchKit Extension/Controller/InterfaceController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "btnSendtoPhone()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08F216C9-421A-4848-B23A-A9929EBEF47F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpeedyContactAdd/Controllers/ContactsTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "session(_:didReceiveMessageData:replyHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "820F1EE3-FD53-41CD-AB1A-F26DCC83584A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpeedyContactAdd/Controllers/ContactsTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "session(_:didReceiveMessageData:replyHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "820F1EE3-FD53-41CD-AB1A-F26DCC83584A - 8fca8dde845206a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpeedyContactAdd.ContactsTableViewController.session(_: __C.WCSession, didReceiveMessageData: Foundation.Data, replyHandler: (Foundation.Data) -&gt; ()) -&gt; ()"
+                  moduleName = "SpeedyContactAdd"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WildFire84/Documents/Xcode%20Projects/SpeedyContactAdd/SpeedyContactAdd/SpeedyContactAdd/Controllers/ContactsTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1464">
+               </Location>
+               <Location
+                  uuid = "820F1EE3-FD53-41CD-AB1A-F26DCC83584A - 8fca8dde845206a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpeedyContactAdd.ContactsTableViewController.session(_: __C.WCSession, didReceiveMessageData: Foundation.Data, replyHandler: (Foundation.Data) -&gt; ()) -&gt; ()"
+                  moduleName = "SpeedyContactAdd"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WildFire84/Documents/Xcode%20Projects/SpeedyContactAdd/SpeedyContactAdd/SpeedyContactAdd/Controllers/ContactsTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1641">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

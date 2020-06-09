@@ -6,7 +6,7 @@
 //  Copyright © 2018 AlphaGradeINC. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct Contacts: Codable {
     let name: String

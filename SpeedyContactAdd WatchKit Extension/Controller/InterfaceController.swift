@@ -32,7 +32,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet weak var lblReName: WKInterfaceLabel!
     
     var session:WCSession!
-//    let findLocationHelper = FindLocationHelper()
+    var contacts: [Contacts] = []
     var numberStore = String()
     var recipNameString = String()
     var date = Date()
@@ -127,11 +127,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         if (WCSession.default.isReachable) {
             let location = getLocation()
             let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
+            contacts.append(contactData)
             let encoder = JSONEncoder()
-            let data = (try? encoder.encode(contactData))!
-            
-            WCSession.default.sendMessageData(data, replyHandler: { (Data) in
+            let data = (try? encoder.encode(contacts))!
+
+            WCSession.default.sendMessageData(data, replyHandler: { Data in
             }, errorHandler: nil)
+            contacts = []
         } else {
             //   If WCSession isn't reachable, store contact on watch until phone is reachable.
             tempStoreUniqueKeyGen()

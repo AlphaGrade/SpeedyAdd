@@ -14,8 +14,8 @@ extension InterfaceController: CLLocationManagerDelegate {
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.requestLocation()
-        let latitude = manager.location?.coordinate.latitude ?? 0
-        let longitude = manager.location?.coordinate.longitude ?? 1
+        let latitude = manager.location?.coordinate.latitude ?? 37.33182
+        let longitude = manager.location?.coordinate.longitude ?? -122.03118
         print("\(latitude) \(longitude)")
         let date = Date()
         return (latitude, longitude, date)
