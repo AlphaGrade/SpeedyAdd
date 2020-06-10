@@ -16,6 +16,7 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
     var session: WCSession!
     var window: UIWindow?
     var contacts = [Contacts]()
+    let contactsDefault = UserDefaults.standard
     
     // Establishes WCSession to Watch
     override func viewDidLoad() {
@@ -25,6 +26,7 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
             session.delegate = self as? WCSessionDelegate
             session.activate()
         }
+        restoreSavedContacts()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,10 +52,11 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
             let contactData = try decoder.decode([Contacts].self, from: messageData)
             for contact in contactData {
                 contacts.append(contact)
+                contactsDefault.set(contacts, forKey: "SavedContacts")
+                add(contact: contact.name, phone: contact.phoneNumber)
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                
             }
         } catch {
             print("Error decoding data: \(error)")
@@ -71,6 +74,7 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         DispatchQueue.main.async {
             let contact = self.contacts[indexPath.row]
             cell.textLabel?.text = contact.name
+            cell.detailTextLabel?.text = contact.convertDateToString(date: contact.date)
         }
         return cell
     }
@@ -91,12 +95,33 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
             }
         }
     }
+
+
+    // MARK: - Actions
+    
+    func add(contact to: String, phone: String) {
+        //Splits Name into first name / last name
+        let fullNameSplit = to.components(separatedBy: " ")
+        
+        let firstName = fullNameSplit[0]
+        let lastName = fullNameSplit[1]
+        
+        // Creates contact in phone list
+        
+        let newContact = CNMutableContact()
+        newContact.givenName = ("\(firstName)")
+        newContact.familyName = ("\(lastName)")
+        
+        let number = CNPhoneNumber(stringValue: ("\(phone)"))
+        
+        newContact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMobile, value: number)]
+        
+        let store = CNContactStore()
+        let saveRequest = CNSaveRequest()
+        saveRequest.add(newContact, toContainerWithIdentifier:nil)
+        try! store.execute(saveRequest)}
+    
+    func restoreSavedContacts() {
+        contacts = contactsDefault.object(forKey: "SavedContacts") as? [Contacts] ?? [Contacts]()
+    }
 }
-
-// MARK: - Actions
-
-// TODO: - Create Method for spliting name
-
-// TODO: - Create Method for uploading to iPhone Contacts
-
-

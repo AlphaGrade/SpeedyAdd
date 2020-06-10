@@ -21,7 +21,7 @@ extension InterfaceController {
             runNote(UUID: UUID,
                     contactName: contactName,
                     message: "Contact Added!",
-                    body: "New Contact has been added to your list.")
+                    body: "\(contactName) has been added to your list.")
             // If WCSession isn't reachable, Contact Will be stored on Watch until session is active.
         } else if inRange == false {
             runNote(UUID: UUID,
