@@ -12,7 +12,7 @@ import WatchConnectivity
 import UserNotifications
 
 class ContactsTableViewController: UITableViewController, WCSessionDelegate {
-
+    
     var session: WCSession!
     var window: UIWindow?
     var contacts = [Contacts]()
@@ -20,14 +20,15 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
     // Establishes WCSession to Watch
     override func viewDidLoad() {
         super.viewDidLoad()
-          if WCSession.isSupported() {
-                let session = WCSession.default
-                session.delegate = self as? WCSessionDelegate
-                session.activate()
-            }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self as? WCSessionDelegate
+            session.activate()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
@@ -41,48 +42,48 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
             print("There was an error: \(error)")
         }
     }
-        // MARK: Receive Message Data from WatchOS
-
-    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
-          let decoder = JSONDecoder()
-              do {
-                let contactData = try decoder.decode([Contacts].self, from: messageData)
-                  for contact in contactData {
-                         contacts.append(contact)
-                         }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    
-                }
-              } catch {
-                  print("Error decoding data: \(error)")
-              }
-        
-          }
-          
-        // MARK: Table View Declaration
+    // MARK: Receive Message Data from WatchOS
     
-          override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-              return contacts.count
-          }
-          override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-              guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") else {return UITableViewCell()}
-              DispatchQueue.main.async {
-                  let contact = self.contacts[indexPath.row]
-                  cell.textLabel?.text = contact.name
-              }
-              return cell
-          }
-          override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-              DispatchQueue.main.async {
-                  guard editingStyle == .delete else { return }
-                  self.contacts.remove(at: indexPath.row)
-                  tableView.deleteRows(at: [indexPath], with: .automatic)
-              }
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        let decoder = JSONDecoder()
+        do {
+            let contactData = try decoder.decode([Contacts].self, from: messageData)
+            for contact in contactData {
+                contacts.append(contact)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                
+            }
+        } catch {
+            print("Error decoding data: \(error)")
+        }
+        
     }
-
-
-        // MARK: - Navigation
+    
+    // MARK: Table View Declaration
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contacts.count
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") else {return UITableViewCell()}
+        DispatchQueue.main.async {
+            let contact = self.contacts[indexPath.row]
+            cell.textLabel?.text = contact.name
+        }
+        return cell
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            guard editingStyle == .delete else { return }
+            self.contacts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToDetail" {
             if let indexPath = tableView.indexPathForSelectedRow, let vc = segue.destination as? ContactsDetailViewController {
@@ -92,8 +93,10 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
     }
 }
 
-    // MARK: - Actions
+// MARK: - Actions
 
+// TODO: - Create Method for spliting name
 
+// TODO: - Create Method for uploading to iPhone Contacts
 
 

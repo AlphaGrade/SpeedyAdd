@@ -159,6 +159,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     // MARK: upload contacts stored temporarily
+    
+    // FIXME: store data in User Defaults and attempt to upload when session is reachable
     @objc func uploadTempContacts() {
         if (WCSession.default.isReachable) && contactTempStore != [:] {
             
