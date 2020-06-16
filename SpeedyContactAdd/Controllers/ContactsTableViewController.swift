@@ -52,7 +52,7 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
             let contactData = try decoder.decode([Contacts].self, from: messageData)
             for contact in contactData {
                 contacts.append(contact)
-                contactsDefault.set(contacts, forKey: "SavedContacts")
+//                contactsDefault.set(contacts, forKey: "SavedContacts")
                 add(contact: contact.name, phone: contact.phoneNumber)
             }
             DispatchQueue.main.async {
