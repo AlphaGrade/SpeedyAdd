@@ -15,15 +15,21 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
     
     var session: WCSession!
     var window: UIWindow?
-    var contacts = [Contacts]()
+    var contacts: [Contacts] = []
     let contactsDefault = UserDefaults.standard
+    
+    let timeRemainingFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm E, d MMM y"
+        return formatter
+    }()
     
     // Establishes WCSession to Watch
     override func viewDidLoad() {
         super.viewDidLoad()
         if WCSession.isSupported() {
             let session = WCSession.default
-            session.delegate = self as? WCSessionDelegate
+            session.delegate = self 
             session.activate()
         }
         restoreSavedContacts()
@@ -50,9 +56,11 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         let decoder = JSONDecoder()
         do {
             let contactData = try decoder.decode([Contacts].self, from: messageData)
+            // TODO: - replace For Loop with map
+            // contacts? = contactData.map({$0})
             for contact in contactData {
                 contacts.append(contact)
-//                contactsDefault.set(contacts, forKey: "SavedContacts")
+                add(saved: contact)
                 add(contact: contact.name, phone: contact.phoneNumber)
             }
             DispatchQueue.main.async {
@@ -70,20 +78,18 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         return contacts.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") else {return UITableViewCell()}
-        DispatchQueue.main.async {
-            let contact = self.contacts[indexPath.row]
-            cell.textLabel?.text = contact.name
-            cell.detailTextLabel?.text = contact.convertDateToString(date: contact.date)
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") else { return UITableViewCell() }
+        let contact = self.contacts[indexPath.row]
+        cell.textLabel?.text = contact.name
+        cell.detailTextLabel?.text = self.timeRemainingFormatter.string(from: contact.date)
+        
         return cell
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            guard editingStyle == .delete else { return }
-            self.contacts.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
+        guard editingStyle == .delete else { return }
+        self.contacts.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
     }
     
     
@@ -95,10 +101,10 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
             }
         }
     }
-
-
-    // MARK: - Actions
     
+    
+    // MARK: - Actions
+    // Adds Contact to Phone List
     func add(contact to: String, phone: String) {
         //Splits Name into first name / last name
         let fullNameSplit = to.components(separatedBy: " ")
@@ -120,8 +126,21 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         let saveRequest = CNSaveRequest()
         saveRequest.add(newContact, toContainerWithIdentifier:nil)
         try! store.execute(saveRequest)}
-    
+    //Runs during ViewDidLoad
     func restoreSavedContacts() {
-        contacts = contactsDefault.object(forKey: "SavedContacts") as? [Contacts] ?? [Contacts]()
+        let data = contactsDefault.object(forKey: "SavedContacts") as! Data
+        let decodedData = try? JSONDecoder().decode([Contacts].self, from: data)
+        contacts = decodedData ?? []
+    }
+    // Adds new contact to User Defaults
+    func update(saved contact: Contacts) {
+        let encodedData = try? JSONEncoder().encode(contacts)
+        contactsDefault.set(encodedData, forKey: "SavedContacts")
+    }
+    func delete(contact index: Int) {
+        contacts.remove(at: index)
+        let encodedData = try? JSONEncoder().encode(contacts)
+        contactsDefault.set(encodedData, forKey: "SavedContacts")
     }
 }
+

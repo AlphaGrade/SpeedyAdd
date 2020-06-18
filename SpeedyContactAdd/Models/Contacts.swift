@@ -15,10 +15,4 @@ struct Contacts: Codable {
     let longitude: Double
     let date: Date
     
-    func convertDateToString(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm E, d MMM y"
-        let dateString = formatter.string(from: date)
-        return dateString
-    }
 }
