@@ -18,6 +18,11 @@ class ContactsDetailViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     var contact: Contacts?
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm E, d MMM y"
+        return formatter
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
@@ -26,7 +31,7 @@ class ContactsDetailViewController: UIViewController {
     // MARK: - Action Items
     func updateViews() {
         guard let contact = contact else {return}
-        let theDate = contact.convertDateToString(date: contact.date)
+        let theDate = dateFormatter.string(from: contact.date)
         nameTextField.text = contact.name
         phoneTextField.text = contact.phoneNumber
         dateAddedTextField.text = theDate

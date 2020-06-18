@@ -18,7 +18,7 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
     var contacts: [Contacts] = []
     let contactsDefault = UserDefaults.standard
     
-    let timeRemainingFormatter: DateFormatter = {
+    let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm E, d MMM y"
         return formatter
@@ -60,7 +60,7 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
             // contacts? = contactData.map({$0})
             for contact in contactData {
                 contacts.append(contact)
-                add(saved: contact)
+                update(saved: contact)
                 add(contact: contact.name, phone: contact.phoneNumber)
             }
             DispatchQueue.main.async {
@@ -81,7 +81,7 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") else { return UITableViewCell() }
         let contact = self.contacts[indexPath.row]
         cell.textLabel?.text = contact.name
-        cell.detailTextLabel?.text = self.timeRemainingFormatter.string(from: contact.date)
+        cell.detailTextLabel?.text = self.dateFormatter.string(from: contact.date)
         
         return cell
     }
@@ -89,6 +89,8 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         guard editingStyle == .delete else { return }
         self.contacts.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        // TODO: - implement the delete method to remove contact from User Defaults
+        update(saved: contacts)
         
     }
     
@@ -137,8 +139,7 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         let encodedData = try? JSONEncoder().encode(contacts)
         contactsDefault.set(encodedData, forKey: "SavedContacts")
     }
-    func delete(contact index: Int) {
-        contacts.remove(at: index)
+    func update(saved contacts: [Contacts]) {
         let encodedData = try? JSONEncoder().encode(contacts)
         contactsDefault.set(encodedData, forKey: "SavedContacts")
     }
