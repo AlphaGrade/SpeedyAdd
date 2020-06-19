@@ -14,5 +14,4 @@ struct Contacts: Codable {
     let latitude: Double
     let longitude: Double
     let date: Date
-    
 }

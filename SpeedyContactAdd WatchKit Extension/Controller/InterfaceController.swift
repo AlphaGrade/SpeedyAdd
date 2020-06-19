@@ -28,6 +28,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                  error: Error?){
     }
     
+    session
+    
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
     @IBOutlet weak var lblReName: WKInterfaceLabel!
     
@@ -41,6 +43,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var fullNameString = "fullNameString"
     var numberString = "numberString"
     var timer = Timer()
+    let contactsDefault = UserDefaults.standard
     
     func numberAdd(myCharacter:String) {
         numberStore += myCharacter
@@ -94,8 +97,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBAction func btnMenuClear() {
         clearItems()
     }
-    
-    // MARK: add name to RecipNameStrings
+     
+    // MARK: - Add name to RecipNameStrings
     @IBAction func btnAddNameAction() {
         presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (result) in
             guard let result = result else {return}
@@ -105,17 +108,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    //Creates a queue for stored contacts
-    func tempStoreUniqueKeyGen() {
-        
-        fullNameString += "\(identifierInt)"
-        numberString += "\(identifierInt)"
-        
-        identifierInt = identifierInt &+ 1
-        print("\(identifierInt)")
-        print("\(fullNameString)")
-        
-    }
+
     
     //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
     @IBAction func btnSendtoPhone() {
@@ -136,14 +129,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             contacts = []
         } else {
             //   If WCSession isn't reachable, store contact on watch until phone is reachable.
-            tempStoreUniqueKeyGen()
-            contactTempStore["\(fullNameString)"] = recipNameString
-            contactTempStore["\(numberString)"] = numberStore
-            fullNameString = "fullNameString"
-            numberString = "numberString"
-            print ("\(contactTempStore)")
-            print("Session is not Reachable")
-            uploadTempContacts()
+            let location = getLocation()
+            let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
+            contacts.append(contactData)
+            let encoder = JSONEncoder()
+            let data = (try? encoder.encode(contacts))!
+            contactsDefault.set(data, forKey: "SavedContacts")
+            
         }
         // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
         DispatchQueue.main.async {
@@ -160,8 +152,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     // MARK: upload contacts stored temporarily
     
-    // FIXME: store data in User Defaults and attempt to upload when session is reachable
-    @objc func uploadTempContacts() {
+    // FIXME: Set up method that runs the send to phone when WCSession is reconnected.
+    @objc func uploadStoredContacts() {
         if (WCSession.default.isReachable) && contactTempStore != [:] {
             
             WCSession.default.sendMessage(contactTempStore, replyHandler: nil, errorHandler: nil)
