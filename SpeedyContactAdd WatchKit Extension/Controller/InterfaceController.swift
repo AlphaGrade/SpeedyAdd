@@ -28,7 +28,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                  error: Error?){
     }
     
-    session
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        
+    }
     
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
     @IBOutlet weak var lblReName: WKInterfaceLabel!
@@ -37,7 +39,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var contacts: [Contacts] = []
     var numberStore = String()
     var recipNameString = String()
-    var date = Date()
     var identifierInt : Int = 1
     var contactTempStore : [String:String] = [:]
     var fullNameString = "fullNameString"
@@ -97,7 +98,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBAction func btnMenuClear() {
         clearItems()
     }
-     
+    
     // MARK: - Add name to RecipNameStrings
     @IBAction func btnAddNameAction() {
         presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (result) in
@@ -108,7 +109,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-
+    
     
     //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
     @IBAction func btnSendtoPhone() {
@@ -118,24 +119,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         // TODO: - Add in a notification that states one of these is blank.
         
         if (WCSession.default.isReachable) {
-            let location = getLocation()
-            let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
-            contacts.append(contactData)
-            let encoder = JSONEncoder()
-            let data = (try? encoder.encode(contacts))!
-
-            WCSession.default.sendMessageData(data, replyHandler: { Data in
-            }, errorHandler: nil)
-            contacts = []
+            sendContactsToPhone()
         } else {
             //   If WCSession isn't reachable, store contact on watch until phone is reachable.
-            let location = getLocation()
-            let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
-            contacts.append(contactData)
-            let encoder = JSONEncoder()
-            let data = (try? encoder.encode(contacts))!
-            contactsDefault.set(data, forKey: "SavedContacts")
-            
+            uploadStoredContacts()
         }
         // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
         DispatchQueue.main.async {
@@ -150,21 +137,35 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
     }
     
-    // MARK: upload contacts stored temporarily
+
+        // MARK: Sends data to phone
+    func sendContactsToPhone() {
+        let location = getLocation()
+        let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
+        contacts.append(contactData)
+        let encoder = JSONEncoder()
+        let data = (try? encoder.encode(contacts))!
+        WCSession.default.sendMessageData(data, replyHandler: { Data in
+        }, errorHandler: nil)
+        contacts = []
+    }
+        // MARK: Store Contacts
+    func storeSavedContacts() {
+        let location = getLocation()
+        let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
+        contacts.append(contactData)
+        let encoder = JSONEncoder()
+        let data = (try? encoder.encode(contacts))!
+        contactsDefault.set(data, forKey: "SavedContacts")
+    }
     
-    // FIXME: Set up method that runs the send to phone when WCSession is reconnected.
-    @objc func uploadStoredContacts() {
-        if (WCSession.default.isReachable) && contactTempStore != [:] {
-            
-            WCSession.default.sendMessage(contactTempStore, replyHandler: nil, errorHandler: nil)
-            
-            timer.invalidate()
-            
-        } else {
-            
-            timer = Timer.scheduledTimer(timeInterval: 150, target: self, selector: #selector(InterfaceController.uploadTempContacts), userInfo: nil, repeats: true)
-            
-        }
+        // MARK: upload contacts stored temporarily
+    func uploadStoredContacts() {
+        let encoder = JSONEncoder()
+        let data = (try? encoder.encode(contacts))!
+        WCSession.default.sendMessageData(data, replyHandler: { Data in
+        }, errorHandler: nil)
+        contacts = []
     }
 }
 
