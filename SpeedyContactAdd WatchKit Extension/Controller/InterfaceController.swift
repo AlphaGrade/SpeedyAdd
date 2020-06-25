@@ -120,53 +120,61 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         if (WCSession.default.isReachable) {
             sendContactsToPhone()
+            DispatchQueue.main.async {
+                self.notifyUserAfterSave(inRange: true,
+                                         UUID: UUID().uuidString,
+                                         contactName: self.recipNameString)
+            }
         } else {
             //   If WCSession isn't reachable, store contact on watch until phone is reachable.
             uploadStoredContacts()
-        }
-        // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
-        DispatchQueue.main.async {
-            if (WCSession.default.isReachable) {
-                self.notifyUserAfterSave(inRange: true, UUID: UUID().uuidString, contactName: self.recipNameString)
-            } else if (!WCSession.default.isReachable){
-                self.notifyUserAfterSave(inRange: false, UUID: UUID().uuidString, contactName: self.recipNameString)
+            DispatchQueue.main.async {
+                self.notifyUserAfterSave(inRange: false,
+                                         UUID: UUID().uuidString,
+                                         contactName: self.recipNameString)
             }
-            // MARK: Reset Strings for next contact upload
-            self.clearItems()
         }
-        
+        // Reset Strings for next contact upload
+        self.clearItems()
     }
     
+// MARK: Sends data to phone
+func sendContactsToPhone() {
+    let location = getLocation()
+    let contactData = Contacts.init(name: recipNameString,
+                                    phoneNumber: numberStore,
+                                    latitude: location.0,
+                                    longitude: location.1,
+                                    date: location.2)
+    contacts.append(contactData)
+    let encoder = JSONEncoder()
+    let data = (try? encoder.encode(contacts))!
+    WCSession.default.sendMessageData(data, replyHandler: { Data in
+    }, errorHandler: nil)
+    contacts = []
+}
+// MARK: Store Contacts
+func storeSavedContacts() {
+    let location = getLocation()
+    let contactData = Contacts.init(name: recipNameString,
+                                    phoneNumber: numberStore,
+                                    latitude: location.0,
+                                    longitude: location.1,
+                                    date: location.2)
+    contacts.append(contactData)
+    let encoder = JSONEncoder()
+    let data = (try? encoder.encode(contacts))!
+    contactsDefault.set(data, forKey: "SavedContacts")
+}
 
-        // MARK: Sends data to phone
-    func sendContactsToPhone() {
-        let location = getLocation()
-        let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
-        contacts.append(contactData)
-        let encoder = JSONEncoder()
-        let data = (try? encoder.encode(contacts))!
-        WCSession.default.sendMessageData(data, replyHandler: { Data in
-        }, errorHandler: nil)
-        contacts = []
-    }
-        // MARK: Store Contacts
-    func storeSavedContacts() {
-        let location = getLocation()
-        let contactData = Contacts.init(name: recipNameString, phoneNumber: numberStore, latitude: location.0, longitude: location.1, date: location.2)
-        contacts.append(contactData)
-        let encoder = JSONEncoder()
-        let data = (try? encoder.encode(contacts))!
-        contactsDefault.set(data, forKey: "SavedContacts")
-    }
-    
-        // MARK: upload contacts stored temporarily
-    func uploadStoredContacts() {
-        let encoder = JSONEncoder()
-        let data = (try? encoder.encode(contacts))!
-        WCSession.default.sendMessageData(data, replyHandler: { Data in
-        }, errorHandler: nil)
-        contacts = []
-    }
+// MARK: upload contacts stored temporarily
+func uploadStoredContacts() {
+    let encoder = JSONEncoder()
+    let data = (try? encoder.encode(contacts))!
+    WCSession.default.sendMessageData(data, replyHandler: { Data in
+    }, errorHandler: nil)
+    contacts = []
+}
 }
 
 
