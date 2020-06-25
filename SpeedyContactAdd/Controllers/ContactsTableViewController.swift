@@ -24,6 +24,10 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         return formatter
     }()
     
+    let checkIfUserDefaultExist:((String) -> Bool) = { key in
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
+    
     // Establishes WCSession to Watch
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +36,9 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
             session.delegate = self 
             session.activate()
         }
-        restoreSavedContacts()
+        if checkIfUserDefaultExist("SavedContacts") == true {
+            restoreSavedContacts()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
