@@ -20,7 +20,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self.session = WCSession.default
             session.delegate = self
             self.session.activate()
+            checkForSavedContacts()
         }
+        
     }
     
     func session(_ session: WCSession,
@@ -36,6 +38,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet weak var lblReName: WKInterfaceLabel!
     
     var session:WCSession!
+    
     var contacts: [Contacts] = []
     var numberStore = String()
     var recipNameString = String()
@@ -45,6 +48,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var numberString = "numberString"
     var timer = Timer()
     let contactsDefault = UserDefaults.standard
+    
+    let checkIfUserDefaultExist:((String) -> Bool) = { key in
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
     
     func numberAdd(myCharacter:String) {
         numberStore += myCharacter
@@ -138,43 +145,53 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         self.clearItems()
     }
     
-// MARK: Sends data to phone
-func sendContactsToPhone() {
-    let location = getLocation()
-    let contactData = Contacts.init(name: recipNameString,
-                                    phoneNumber: numberStore,
-                                    latitude: location.0,
-                                    longitude: location.1,
-                                    date: location.2)
-    contacts.append(contactData)
-    let encoder = JSONEncoder()
-    let data = (try? encoder.encode(contacts))!
-    WCSession.default.sendMessageData(data, replyHandler: { Data in
-    }, errorHandler: nil)
-    contacts = []
-}
-// MARK: Store Contacts
-func storeSavedContacts() {
-    let location = getLocation()
-    let contactData = Contacts.init(name: recipNameString,
-                                    phoneNumber: numberStore,
-                                    latitude: location.0,
-                                    longitude: location.1,
-                                    date: location.2)
-    contacts.append(contactData)
-    let encoder = JSONEncoder()
-    let data = (try? encoder.encode(contacts))!
-    contactsDefault.set(data, forKey: "SavedContacts")
-}
-
-// MARK: upload contacts stored temporarily
-func uploadStoredContacts() {
-    let encoder = JSONEncoder()
-    let data = (try? encoder.encode(contacts))!
-    WCSession.default.sendMessageData(data, replyHandler: { Data in
-    }, errorHandler: nil)
-    contacts = []
-}
+    // MARK: Sends data to phone
+    func sendContactsToPhone() {
+        let location = getLocation()
+        let contactData = Contacts.init(name: recipNameString,
+                                        phoneNumber: numberStore,
+                                        latitude: location.0,
+                                        longitude: location.1,
+                                        date: location.2)
+        contacts.append(contactData)
+        let encoder = JSONEncoder()
+        let data = (try? encoder.encode(contacts))!
+        WCSession.default.sendMessageData(data, replyHandler: { Data in
+        }, errorHandler: nil)
+        contacts = []
+    }
+    // MARK: Store Contacts
+    func storeSavedContacts() {
+        let location = getLocation()
+        let contactData = Contacts.init(name: recipNameString,
+                                        phoneNumber: numberStore,
+                                        latitude: location.0,
+                                        longitude: location.1,
+                                        date: location.2)
+        contacts.append(contactData)
+        let encoder = JSONEncoder()
+        let data = (try? encoder.encode(contacts))!
+        contactsDefault.set(data, forKey: "SavedContacts")
+    }
+    
+    func checkForSavedContacts() {
+        if checkIfUserDefaultExist("SavedContacts") == true {
+        let data = contactsDefault.object(forKey: "SavedContacts") as! Data
+        guard let decodedData = try? JSONDecoder().decode([Contacts].self, from: data) else { return }
+        contacts.append(contentsOf: decodedData)
+            contactsDefault.removeObject(forKey: "SavedContacts")
+        }
+        uploadStoredContacts()
+    }
+    
+    // MARK: upload contacts stored temporarily
+    func uploadStoredContacts() {
+            let encoder = JSONEncoder()
+            let data = (try? encoder.encode(contacts))!
+            WCSession.default.sendMessageData(data, replyHandler: { Data in
+            }, errorHandler: nil)
+            contacts = []
+    }
 }
 
 

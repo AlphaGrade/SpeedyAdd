@@ -137,8 +137,8 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
     //Runs during ViewDidLoad
     func restoreSavedContacts() {
         let data = contactsDefault.object(forKey: "SavedContacts") as! Data
-        let decodedData = try? JSONDecoder().decode([Contacts].self, from: data)
-        contacts = decodedData ?? []
+        guard let decodedData = try? JSONDecoder().decode([Contacts].self, from: data) else { return }
+        contacts.append(contentsOf: decodedData)
     }
     // Adds new contact to User Defaults
     func update(saved contact: Contacts) {
