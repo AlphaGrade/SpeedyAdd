@@ -20,7 +20,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self.session = WCSession.default
             session.delegate = self
             self.session.activate()
-            checkForSavedContacts()
+
         }
         
     }
@@ -28,6 +28,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?){
+        if let error = error {
+            print("There was an error: \(error)")
+            return
+        }
+        checkForSavedContacts()
     }
     
     func sessionReachabilityDidChange(_ session: WCSession) {
@@ -62,6 +67,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         recipNameString = ""
         lblReName.setText("Contact Name")
         lblPhoneNumber.setText("")
+    }
+    func activateWCSession() {
+        if(WCSession.isSupported()){
+            self.session = WCSession.default
+            session.delegate = self
+            self.session.activate()
+        }
     }
     
     //Mark: Keypad that addes numbers to phone number
@@ -106,6 +118,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         clearItems()
     }
     
+    // MARK: - Test to activate Session
+    
+    @IBAction func btnActivateSession() {
+        activateWCSession()
+    }
+    
     // MARK: - Add name to RecipNameStrings
     @IBAction func btnAddNameAction() {
         presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (result) in
@@ -126,6 +144,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         // TODO: - Add in a notification that states one of these is blank.
         
         if (WCSession.default.isReachable) {
+             if checkIfUserDefaultExist("SavedContacts") == true {
+                checkForSavedContacts()
+            }
             sendContactsToPhone()
             DispatchQueue.main.async {
                 self.notifyUserAfterSave(inRange: true,
@@ -134,7 +155,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             }
         } else {
             //   If WCSession isn't reachable, store contact on watch until phone is reachable.
-            uploadStoredContacts()
+            storeSavedContacts()
             DispatchQueue.main.async {
                 self.notifyUserAfterSave(inRange: false,
                                          UUID: UUID().uuidString,
@@ -179,9 +200,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         let data = contactsDefault.object(forKey: "SavedContacts") as! Data
         guard let decodedData = try? JSONDecoder().decode([Contacts].self, from: data) else { return }
         contacts.append(contentsOf: decodedData)
-            contactsDefault.removeObject(forKey: "SavedContacts")
-        }
         uploadStoredContacts()
+        contactsDefault.removeObject(forKey: "SavedContacts")
+            
+        }
+        
     }
     
     // MARK: upload contacts stored temporarily
