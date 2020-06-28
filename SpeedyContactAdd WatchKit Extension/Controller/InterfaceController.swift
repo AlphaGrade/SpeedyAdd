@@ -6,10 +6,10 @@
 //  Copyright © 2016 AlphaGradeINC. All rights reserved.
 //
 
-import WatchKit
+import CoreLocation
 import UIKit
 import WatchConnectivity
-import CoreLocation
+import WatchKit
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
@@ -20,9 +20,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self.session = WCSession.default
             session.delegate = self
             self.session.activate()
-
         }
-        
     }
     
     func session(_ session: WCSession,
@@ -47,13 +45,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var contacts: [Contacts] = []
     var numberStore = String()
     var recipNameString = String()
-    var identifierInt : Int = 1
-    var contactTempStore : [String:String] = [:]
     var fullNameString = "fullNameString"
     var numberString = "numberString"
     var timer = Timer()
     let contactsDefault = UserDefaults.standard
-    
     let checkIfUserDefaultExist:((String) -> Bool) = { key in
         return UserDefaults.standard.object(forKey: key) != nil
     }
@@ -67,13 +62,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         recipNameString = ""
         lblReName.setText("Contact Name")
         lblPhoneNumber.setText("")
-    }
-    func activateWCSession() {
-        if(WCSession.isSupported()){
-            self.session = WCSession.default
-            session.delegate = self
-            self.session.activate()
-        }
     }
     
     //Mark: Keypad that addes numbers to phone number
@@ -116,12 +104,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // MARK: - Force Push button resets all
     @IBAction func btnMenuClear() {
         clearItems()
-    }
-    
-    // MARK: - Test to activate Session
-    
-    @IBAction func btnActivateSession() {
-        activateWCSession()
     }
     
     // MARK: - Add name to RecipNameStrings
@@ -193,6 +175,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         let encoder = JSONEncoder()
         let data = (try? encoder.encode(contacts))!
         contactsDefault.set(data, forKey: "SavedContacts")
+        contacts = []
     }
     
     func checkForSavedContacts() {
@@ -202,9 +185,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         contacts.append(contentsOf: decodedData)
         uploadStoredContacts()
         contactsDefault.removeObject(forKey: "SavedContacts")
-            
         }
-        
     }
     
     // MARK: upload contacts stored temporarily
