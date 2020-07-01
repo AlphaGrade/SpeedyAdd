@@ -13,16 +13,19 @@ import WatchKit
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-        if(WCSession.isSupported()){
+    override func awake(withContext context: Any?) {
+            if(WCSession.isSupported()){
             self.session = WCSession.default
             session.delegate = self
             self.session.activate()
         }
     }
-    
+    override func willActivate() {
+        // This method is called when watch view controller is about to be visible to user
+        super.willActivate()
+
+    }
+
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?){
@@ -30,8 +33,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             print("There was an error: \(error)")
             return
         }
-        checkForSavedContacts()
+  
     }
+        
     
     func sessionReachabilityDidChange(_ session: WCSession) {
         
@@ -127,7 +131,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         if (WCSession.default.isReachable) {
              if checkIfUserDefaultExist("SavedContacts") == true {
-                checkForSavedContacts()
+                loadStoredContacts()
             }
             sendContactsToPhone()
             DispatchQueue.main.async {
@@ -175,26 +179,14 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         let encoder = JSONEncoder()
         let data = (try? encoder.encode(contacts))!
         contactsDefault.set(data, forKey: "SavedContacts")
-        contacts = []
-    }
-    
-    func checkForSavedContacts() {
-        if checkIfUserDefaultExist("SavedContacts") == true {
-        let data = contactsDefault.object(forKey: "SavedContacts") as! Data
-        guard let decodedData = try? JSONDecoder().decode([Contacts].self, from: data) else { return }
-        contacts.append(contentsOf: decodedData)
-        uploadStoredContacts()
-        contactsDefault.removeObject(forKey: "SavedContacts")
-        }
     }
     
     // MARK: upload contacts stored temporarily
-    func uploadStoredContacts() {
-            let encoder = JSONEncoder()
-            let data = (try? encoder.encode(contacts))!
-            WCSession.default.sendMessageData(data, replyHandler: { Data in
-            }, errorHandler: nil)
-            contacts = []
+    func loadStoredContacts() {
+        let data = contactsDefault.object(forKey: "SavedContacts") as! Data
+        guard let decodedData = try? JSONDecoder().decode([Contacts].self, from: data) else { return }
+        contacts.append(contentsOf: decodedData)
+        contactsDefault.removeObject(forKey: "SavedContacts")
     }
 }
 

@@ -125,11 +125,6 @@
                                     <action selector="btnMenuClear" destination="AgC-eL-Hgc" id="oKc-Ep-V2B"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Activate Session" icon="trash" id="3vs-UZ-Sna" userLabel="Activate Session">
-                                <connections>
-                                    <action selector="btnActivateSession" destination="AgC-eL-Hgc" id="yuJ-fo-xVN"/>
-                                </connections>
-                            </menuItem>
                         </items>
                     </menu>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
