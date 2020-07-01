@@ -179,6 +179,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         let encoder = JSONEncoder()
         let data = (try? encoder.encode(contacts))!
         contactsDefault.set(data, forKey: "SavedContacts")
+        contacts = []
     }
     
     // MARK: upload contacts stored temporarily
