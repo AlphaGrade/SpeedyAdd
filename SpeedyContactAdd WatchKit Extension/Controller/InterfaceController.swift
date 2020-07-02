@@ -169,16 +169,24 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     // MARK: Store Contacts
     func storeSavedContacts() {
+        // Load contacts if UserDefaults exist
+          if checkIfUserDefaultExist("SavedContacts") == true {
+                      loadStoredContacts()
+                  }
+        // Create contact to be stored
         let location = getLocation()
         let contactData = Contacts.init(name: recipNameString,
                                         phoneNumber: numberStore,
                                         latitude: location.0,
                                         longitude: location.1,
                                         date: location.2)
+        // Append contact to array
         contacts.append(contactData)
+        // Encode array and store into User Defaults
         let encoder = JSONEncoder()
         let data = (try? encoder.encode(contacts))!
         contactsDefault.set(data, forKey: "SavedContacts")
+        // clear contact array.
         contacts = []
     }
     
