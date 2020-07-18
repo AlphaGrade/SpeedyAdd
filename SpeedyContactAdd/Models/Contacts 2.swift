@@ -1,9 +1,9 @@
 //
 //  Contacts.swift
-//  SpeedyContactAdd WatchKit Extension
+//  SpeedyContactAdd
 //
-//  Created by Aaron on 11/10/18.
-//  Copyright © 2018 AlphaGradeINC. All rights reserved.
+//  Created by Joe on 5/7/20.
+//  Copyright © 2020 AlphaGradeINC. All rights reserved.
 //
 
 import Foundation
@@ -15,4 +15,3 @@ struct Contacts: Codable {
     let longitude: Double
     let date: Date
 }
-

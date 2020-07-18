@@ -8,78 +8,67 @@
 
 import ClockKit
 
-//
-////---multipliers to convert to seconds---
-//let HOUR: TimeInterval = 60 * 60
-//let MINUTE: TimeInterval = 60
+// MARK: - Timeline Configuration
 
-//class ComplicationController: NSObject, CLKComplicationDataSource {
-//    public func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: (CLKComplicationTimeTravelDirections) -> Void) {
-//        <#code#>
-//    }
-//
-    
-    // MARK: - Timeline Configuration
-    
-//    func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: (CLKComplicationTimeTravelDirections) -> Void) {
-//        handler([.forward, .backward])
-//    }
-    
-    private func getTimelineStartDate(for complication: CLKComplication, withHandler handler: (Date) -> Void) {
+func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: (CLKComplicationTimeTravelDirections) -> Void) {
+    handler([.forward, .backward])
+}
+
+private func getTimelineStartDate(for complication: CLKComplication, withHandler handler: (Date) -> Void) {
     //    handler(nil)
-    }
-    
-    private func getTimelineEndDate(for complication: CLKComplication, withHandler handler: (Date) -> Void) {
-   //     handler(nil)
-    }
-    
-    func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: (CLKComplicationPrivacyBehavior) -> Void) {
-        handler(.showOnLockScreen)
-    }
-    
-    // MARK: - Timeline Population
-    
-    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: ((CLKComplicationTimelineEntry?) -> Void)) {
-        // Call the handler with the current timeline entry
-        handler(nil)
-    }
-    
-    func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
-        // Call the handler with the timeline entries prior to the given date
-        handler(nil)
-    }
-    
-    func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
-        // Call the handler with the timeline entries after to the given date
-        handler(nil)
-    }
-    
-    // MARK: - Update Scheduling
-    
-    private func getNextRequestedUpdateDate(handler: (Date) -> Void) {
-        // Call the handler with the date when you would next like to be given the opportunity to update your complication content
+}
+
+private func getTimelineEndDate(for complication: CLKComplication, withHandler handler: (Date) -> Void) {
+    //     handler(nil)
+}
+
+func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: (CLKComplicationPrivacyBehavior) -> Void) {
+    handler(.showOnLockScreen)
+}
+
+// MARK: - Timeline Population
+
+func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: ((CLKComplicationTimelineEntry?) -> Void)) {
+    // Call the handler with the current timeline entry
+    handler(nil)
+}
+
+func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
+    // Call the handler with the timeline entries prior to the given date
+    handler(nil)
+}
+
+func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: (([CLKComplicationTimelineEntry]?) -> Void)) {
+    // Call the handler with the timeline entries after to the given date
+    handler(nil)
+}
+
+// MARK: - Update Scheduling
+
+private func getNextRequestedUpdateDate(handler: (Date) -> Void) {
+    // Call the handler with the date when you would next like to be given the opportunity to update your complication content
     //    handler(nil);
-    }
+}
 
-    // MARK: - Complications for App
-     func getPlaceholderTemplate(for complication: CLKComplication, withHandler handler: (CLKComplicationTemplate?) -> Void ) {
+// MARK: - Complications for App
+func getPlaceholderTemplate(for complication: CLKComplication, withHandler handler: (CLKComplicationTemplate?) -> Void ) {
     
-        
-        let modComp = CLKComplicationTemplateModularSmallSimpleImage()
-        
-        modComp.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "Complication/Modular"))
-        
-        let cirComp = CLKComplicationTemplateCircularSmallSimpleImage()
-        
-        cirComp.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "Complication/Circular"))
+    
+    let modComp = CLKComplicationTemplateModularSmallSimpleImage()
+    
+    modComp.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "Complication/Modular"))
+    
+    let cirComp = CLKComplicationTemplateCircularSmallSimpleImage()
+    
+    cirComp.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "Complication/Circular"))
+    
+    let utilComp = CLKComplicationTemplateModularSmallSimpleImage()
+    
+    utilComp.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "Complication/Utilitarian"))
+    
+}
 
-        let utilComp = CLKComplicationTemplateModularSmallSimpleImage()
-        
-        utilComp.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "Complication/Utilitarian"))
-        
-    }
 
-        
 
 
 

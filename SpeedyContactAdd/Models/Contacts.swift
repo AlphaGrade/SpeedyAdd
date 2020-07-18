@@ -14,6 +14,7 @@ struct Contacts: Codable {
     let latitude: Double
     let longitude: Double
     let date: Date
+<<<<<<< HEAD
     
     func convertDateToString(date: Date) -> String {
         let formatter = DateFormatter()
@@ -21,4 +22,6 @@ struct Contacts: Codable {
         let dateString = formatter.string(from: date)
         return dateString
     }
+=======
+>>>>>>> develop
 }

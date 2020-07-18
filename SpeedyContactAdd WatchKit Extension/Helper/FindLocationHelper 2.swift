@@ -7,24 +7,6 @@
 //
 import CoreLocation
 import Foundation
-<<<<<<< HEAD
-import WatchKit
-
-extension InterfaceController: CLLocationManagerDelegate  {
-    func getLocation() -> (Double, Double, Date) {
-        let manager = CLLocationManager()
-        manager.delegate = self
-        manager.requestAlwaysAuthorization()
-        manager.startUpdatingLocation()
-        manager.requestLocation()
-        let latitude = manager.location?.coordinate.latitude ?? 0
-        let longitude = manager.location?.coordinate.longitude ?? 1
-        print("\(latitude) \(longitude)")
-        manager.stopUpdatingLocation()
-        let date = Date()
-        return (latitude, longitude, date)
-        
-=======
 
 extension InterfaceController: CLLocationManagerDelegate {
     func getLocation() -> (Double, Double, Date) {
@@ -36,7 +18,6 @@ extension InterfaceController: CLLocationManagerDelegate {
         let longitude = manager.location?.coordinate.longitude ?? -122.03118
         let date = Date()
         return (latitude, longitude, date)
->>>>>>> develop
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

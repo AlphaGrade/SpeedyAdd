@@ -15,26 +15,13 @@ extension InterfaceController {
         completionHandler([.alert, .sound])
     }
     
-<<<<<<< HEAD
-    func stringWithUUID() -> String {
-        let uuidObj = CFUUIDCreate(nil)
-        let uuidString = CFUUIDCreateString(nil, uuidObj)!
-        return uuidString as String
-    }
-    
-=======
->>>>>>> develop
     func notifyUserAfterSave(inRange: Bool, UUID: String, contactName: String)  {
         // If WCSession is reachable, we notify stating contact has been sent to iOS
         if  inRange == true {
             runNote(UUID: UUID,
                     contactName: contactName,
                     message: "Contact Added!",
-<<<<<<< HEAD
-                    body: "New Contact has been added to your list.")
-=======
                     body: "\(contactName) has been added to your list.")
->>>>>>> develop
             // If WCSession isn't reachable, Contact Will be stored on Watch until session is active.
         } else if inRange == false {
             runNote(UUID: UUID,
