@@ -63,11 +63,11 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         do {
             
             let contactData = try decoder.decode([Contacts].self, from: messageData)
-
+            
             for contact in contactData {
                 contacts.append(contact)
                 update(saved: contact)
-                add(contact: contact.name, phone: contact.phoneNumber)
+                add(new: contact)
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -112,27 +112,23 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
     
     // MARK: - Actions
     // Adds Contact to Phone List
-    func add(contact to: String, phone: String) {
+    func add(new contact: Contacts) {
         //Splits Name into first name / last name
-        let fullNameSplit = to.components(separatedBy: " ")
         
-        let firstName = fullNameSplit[0]
-        let lastName = fullNameSplit[1]
+        let fullNameSplit = contact.name.components(separatedBy: " ")
         
         // Creates contact in phone list
-        
         let newContact = CNMutableContact()
-        newContact.givenName = ("\(firstName)")
-        newContact.familyName = ("\(lastName)")
-        
-        let number = CNPhoneNumber(stringValue: ("\(phone)"))
-        
-        newContact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMobile, value: number)]
+        newContact.givenName = ("\(fullNameSplit[0])")
+        newContact.familyName = ("\(fullNameSplit[1])")
+        newContact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberMobile, value: CNPhoneNumber(stringValue: contact.phoneNumber))]
         
         let store = CNContactStore()
         let saveRequest = CNSaveRequest()
-        saveRequest.add(newContact, toContainerWithIdentifier:nil)
-        try! store.execute(saveRequest)}
+        saveRequest.add(newContact, toContainerWithIdentifier: nil)
+        try! store.execute(saveRequest)
+        
+    }
     //Runs during ViewDidLoad
     func restoreSavedContacts() {
         let data = contactsDefault.object(forKey: "SavedContacts") as! Data
