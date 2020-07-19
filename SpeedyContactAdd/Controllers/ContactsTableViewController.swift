@@ -61,9 +61,9 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
         let decoder = JSONDecoder()
         do {
+            
             let contactData = try decoder.decode([Contacts].self, from: messageData)
-            // TODO: - replace For Loop with map
-            // contacts? = contactData.map({$0})
+
             for contact in contactData {
                 contacts.append(contact)
                 update(saved: contact)
@@ -95,7 +95,6 @@ class ContactsTableViewController: UITableViewController, WCSessionDelegate {
         guard editingStyle == .delete else { return }
         self.contacts.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        // TODO: - implement the delete method to remove contact from User Defaults
         update(saved: contacts)
         
     }
