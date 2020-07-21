@@ -20,11 +20,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             self.session.activate()
         }
     }
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-
-    }
 
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,

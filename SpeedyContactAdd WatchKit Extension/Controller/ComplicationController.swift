@@ -67,9 +67,3 @@ func getPlaceholderTemplate(for complication: CLKComplication, withHandler handl
     utilComp.imageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "Complication/Utilitarian"))
     
 }
-
-
-
-
-
-
