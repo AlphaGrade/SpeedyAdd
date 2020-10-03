@@ -147,8 +147,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "189"
             endingLineNumber = "189"
-            landmarkName = "upload contacts stored temporarily"
-            landmarkType = "19">
+            landmarkName = "loadStoredContacts()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -195,8 +195,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
             endingLineNumber = "151"
-            landmarkName = "InterfaceController"
-            landmarkType = "3">
+            landmarkName = "sendContactsToPhone()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

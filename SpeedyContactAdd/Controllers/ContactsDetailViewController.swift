@@ -37,6 +37,7 @@ class ContactsDetailViewController: UIViewController {
         dateAddedTextField.text = theDate
         let location = CLLocation(latitude: contact.latitude, longitude: contact.longitude)
         mapView.centerToLocation(location)
+        mapView.showsBuildings = true
     }
     
 }

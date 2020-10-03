@@ -22,7 +22,6 @@ extension MKMapView {
         pin.coordinate = location.coordinate
         pin.title = "Where contact was recorded"
         addAnnotation(pin)
+        
     }
-    
-    
 }
