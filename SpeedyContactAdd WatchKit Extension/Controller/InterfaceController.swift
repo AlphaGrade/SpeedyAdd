@@ -14,7 +14,7 @@ import WatchKit
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func awake(withContext context: Any?) {
-            if(WCSession.isSupported()){
+        if(WCSession.isSupported()){
             self.session = WCSession.default
             session.delegate = self
             self.session.activate()
