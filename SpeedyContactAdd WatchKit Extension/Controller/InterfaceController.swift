@@ -37,7 +37,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
-    @IBOutlet weak var lblReName: WKInterfaceLabel!
+    @IBOutlet var lblRecipName: WKInterfaceLabel!
+    
     
     var session:WCSession!
     
@@ -59,7 +60,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     func clearItems() {
         numberStore = ""
         recipNameString = ""
-        lblReName.setText("Contact Name")
+        lblRecipName.setText("Contact Name")
         lblPhoneNumber.setText("")
     }
     
@@ -100,23 +101,18 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             lblPhoneNumber.setText("\(numberStore)")
         } else {return}
     }
-    // MARK: - Force Push button resets all
-    @IBAction func btnMenuClear() {
+    @IBAction func btnResetAction() {
         clearItems()
     }
-    
-    // MARK: - Add name to RecipNameStrings
+        // MARK: - Add name to RecipNameStrings
     @IBAction func btnAddNameAction() {
         presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (result) in
             guard let result = result else {return}
             let resultString = result[0] as! String
             self.recipNameString = resultString
-            self.lblReName.setText("\(resultString)")
+            self.lblRecipName.setText("\(resultString)")
         }
     }
-    
-    
-    
     //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
     @IBAction func btnSendtoPhone() {
         

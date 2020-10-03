@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17156" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch44"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17034"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -87,6 +88,14 @@
                         </group>
                         <group width="1" height="35" alignment="left" id="dir-4g-4jh">
                             <items>
+                                <button width="45" height="35" alignment="left" backgroundImage="arrow.counterclockwise.circle" catalog="system" id="HEb-gy-NFd">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="btnResetAction" destination="AgC-eL-Hgc" id="acD-c8-Sdn"/>
+                                    </connections>
+                                </button>
                                 <button width="45" height="35" alignment="center" title="0" id="mvX-fG-XPJ">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
@@ -118,19 +127,10 @@
                             </connections>
                         </button>
                     </items>
-                    <menu key="menu" id="Kqs-zE-Myr">
-                        <items>
-                            <menuItem title="Start Over" icon="trash" id="62O-MZ-7JK">
-                                <connections>
-                                    <action selector="btnMenuClear" destination="AgC-eL-Hgc" id="oKc-Ep-V2B"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                     <connections>
                         <outlet property="lblPhoneNumber" destination="Myc-F5-oVG" id="G2g-mG-MBZ"/>
-                        <outlet property="lblReName" destination="cPN-Iz-YF7" id="b6y-BB-lcz"/>
+                        <outlet property="lblRecipName" destination="cPN-Iz-YF7" id="r83-jm-fQP"/>
                     </connections>
                 </controller>
             </objects>
@@ -160,4 +160,7 @@
             <point key="canvasLocation" x="553" y="1001"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow.counterclockwise.circle" catalog="system" width="128" height="121"/>
+    </resources>
 </document>
