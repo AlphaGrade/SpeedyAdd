@@ -6,49 +6,64 @@
 //  Copyright © 2016 AlphaGradeINC. All rights reserved.
 //
 
-import WatchKit
-import WatchConnectivity
+import CoreLocation
 import UIKit
-import MapKit
+import WatchConnectivity
+import WatchKit
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
-   var session:WCSession!
-    
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-        if(WCSession.isSupported()){
+    override func awake(withContext context: Any?) {
+            if(WCSession.isSupported()){
             self.session = WCSession.default
             session.delegate = self
             self.session.activate()
         }
     }
-    
+    override func willActivate() {
+        // This method is called when watch view controller is about to be visible to user
+        super.willActivate()
+
+    }
+
     func session(_ session: WCSession,
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?){
+        if let error = error {
+            print("There was an error: \(error)")
+            return
+        }
+  
+    }
+        
+    
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        
     }
     
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
     @IBOutlet weak var lblReName: WKInterfaceLabel!
     
+    var session:WCSession!
     
-    var NumberStore = String()
-    var RecipNameString = String() 
-    var identifierInt : Int = 1
-    var contactTempStore : [String:String] = [:]
+    var contacts: [Contacts] = []
+    var numberStore = String()
+    var recipNameString = String()
     var fullNameString = "fullNameString"
     var numberString = "numberString"
     var timer = Timer()
+    let contactsDefault = UserDefaults.standard
+    let checkIfUserDefaultExist:((String) -> Bool) = { key in
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
     
     func numberAdd(myCharacter:String) {
-        NumberStore += myCharacter
-        lblPhoneNumber.setText(NumberStore)
+        numberStore += myCharacter
+        lblPhoneNumber.setText(numberStore)
     }
     func clearItems() {
-        NumberStore = ""
-        RecipNameString = ""
+        numberStore = ""
+        recipNameString = ""
         lblReName.setText("Contact Name")
         lblPhoneNumber.setText("")
     }
@@ -85,88 +100,103 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         numberAdd(myCharacter: "0")
     }
     @IBAction func btnBackspaceAction() {
-        if NumberStore != "" {
-        NumberStore.remove(at: NumberStore.index(before: NumberStore.endIndex))
-        lblPhoneNumber.setText("\(NumberStore)")
+        if numberStore != "" {
+            numberStore.remove(at: numberStore.index(before: numberStore.endIndex))
+            lblPhoneNumber.setText("\(numberStore)")
         } else {return}
     }
     // MARK: - Force Push button resets all
     @IBAction func btnMenuClear() {
-            clearItems()
+        clearItems()
     }
     
-    // MARK: add name to RecipNameStrings
+    // MARK: - Add name to RecipNameStrings
     @IBAction func btnAddNameAction() {
         presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (result) in
             guard let result = result else {return}
             let resultString = result[0] as! String
-            self.RecipNameString = resultString
+            self.recipNameString = resultString
             self.lblReName.setText("\(resultString)")
         }
     }
     
-    //Creates a queue for stored contacts
-    func tempStoreUniqueKeyGen() {
-        
-        fullNameString += "\(identifierInt)"
-        numberString += "\(identifierInt)"
-        
-        identifierInt = identifierInt &+ 1
-        print("\(identifierInt)")
-        print("\(fullNameString)")
-        
-    }
+    
     
     //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
     @IBAction func btnSendtoPhone() {
         
-        if RecipNameString == "" || NumberStore == "" {return}
+        if recipNameString == "" || numberStore == "" {return}
         
-    // TODO: - Add in a notification that states one of these is blank.
-
+        // TODO: - Add in a notification that states one of these is blank.
+        
         if (WCSession.default.isReachable) {
-
-            let message = Contacts.init(name: RecipNameString, phoneNumber: NumberStore).convertToDictionary()
-            WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: nil)
-
-        } else {
-//   If WCSession isn't reachable, store contact on watch until phone is reachable.
-            tempStoreUniqueKeyGen()
-                contactTempStore["\(fullNameString)"] = RecipNameString
-                contactTempStore["\(numberString)"] = NumberStore
-                fullNameString = "fullNameString"
-                numberString = "numberString"
-                print ("\(contactTempStore)")
-                print("Session is not Reachable")
-                uploadTempContacts()
-            
+             if checkIfUserDefaultExist("SavedContacts") == true {
+                loadStoredContacts()
             }
-    // Notify User that Data was Sent (Or if out of Range state it will be uploaded when in range of iPhone)
-        DispatchQueue.main.async {
-                if (WCSession.default.isReachable) {
-                    self.notifyUserAfterSave(inRange: true, UUID: self.stringWithUUID(), contactName: self.RecipNameString)
-                } else if (!WCSession.default.isReachable){
-                    self.notifyUserAfterSave(inRange: false, UUID: self.stringWithUUID(), contactName: self.RecipNameString)
-                }
-                // MARK: Reset Strings for next contact upload
-            self.clearItems()
-        }
-    
-    }
-
-        // MARK: upload contacts stored temporarily
-    @objc func uploadTempContacts() {
-        if (WCSession.default.isReachable) && contactTempStore != [:] {
-            
-            WCSession.default.sendMessage(contactTempStore, replyHandler: nil, errorHandler: nil)
-            
-            timer.invalidate()
-            
-            
+            sendContactsToPhone()
+            DispatchQueue.main.async {
+                self.notifyUserAfterSave(inRange: true,
+                                         UUID: UUID().uuidString,
+                                         contactName: self.recipNameString)
+            }
         } else {
-            
-            timer = Timer.scheduledTimer(timeInterval: 150, target: self, selector: #selector(InterfaceController.uploadTempContacts), userInfo: nil, repeats: true)
-            
+            //   If WCSession isn't reachable, store contact on watch until phone is reachable.
+            storeSavedContacts()
+            DispatchQueue.main.async {
+                self.notifyUserAfterSave(inRange: false,
+                                         UUID: UUID().uuidString,
+                                         contactName: self.recipNameString)
+            }
         }
+        // Reset Strings for next contact upload
+        self.clearItems()
+    }
+    
+    // MARK: Sends data to phone
+    func sendContactsToPhone() {
+        let location = getLocation()
+        let contactData = Contacts.init(name: recipNameString,
+                                        phoneNumber: numberStore,
+                                        latitude: location.0,
+                                        longitude: location.1,
+                                        date: location.2)
+        contacts.append(contactData)
+        let encoder = JSONEncoder()
+        let data = (try? encoder.encode(contacts))!
+        WCSession.default.sendMessageData(data, replyHandler: { Data in
+        }, errorHandler: nil)
+        contacts = []
+    }
+    // MARK: Store Contacts
+    func storeSavedContacts() {
+        // Load contacts if UserDefaults exist
+          if checkIfUserDefaultExist("SavedContacts") == true {
+                      loadStoredContacts()
+                  }
+        // Create contact to be stored
+        let location = getLocation()
+        let contactData = Contacts.init(name: recipNameString,
+                                        phoneNumber: numberStore,
+                                        latitude: location.0,
+                                        longitude: location.1,
+                                        date: location.2)
+        // Append contact to array
+        contacts.append(contactData)
+        // Encode array and store into User Defaults
+        let encoder = JSONEncoder()
+        let data = (try? encoder.encode(contacts))!
+        contactsDefault.set(data, forKey: "SavedContacts")
+        // clear contact array.
+        contacts = []
+    }
+    
+    // MARK: upload contacts stored temporarily
+    func loadStoredContacts() {
+        let data = contactsDefault.object(forKey: "SavedContacts") as! Data
+        guard let decodedData = try? JSONDecoder().decode([Contacts].self, from: data) else { return }
+        contacts.append(contentsOf: decodedData)
+        contactsDefault.removeObject(forKey: "SavedContacts")
     }
 }
+
+

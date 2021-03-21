@@ -7,12 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4055130C1E95555400A75D9C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4055130A1E95555400A75D9C /* Model.xcdatamodeld */; };
 		4055130E1E9555D500A75D9C /* DataController in Resources */ = {isa = PBXBuildFile; fileRef = 4055130D1E9555D500A75D9C /* DataController */; };
 		409059DF1D7DC90100411DCD /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578C91D3A9EE3004C0680 /* NotificationController.swift */; };
 		409578A11D3A9EE2004C0680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578A01D3A9EE2004C0680 /* AppDelegate.swift */; };
-		409578A31D3A9EE2004C0680 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578A21D3A9EE2004C0680 /* ViewController.swift */; };
-		409578A61D3A9EE2004C0680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 409578A41D3A9EE2004C0680 /* Main.storyboard */; };
 		409578A81D3A9EE2004C0680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409578A71D3A9EE2004C0680 /* Assets.xcassets */; };
 		409578AB1D3A9EE2004C0680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 409578A91D3A9EE2004C0680 /* LaunchScreen.storyboard */; };
 		409578B01D3A9EE2004C0680 /* SpeedyContactAdd WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 409578AF1D3A9EE2004C0680 /* SpeedyContactAdd WatchKit App.app */; };
@@ -24,7 +21,14 @@
 		409578CC1D3A9EE3004C0680 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578CB1D3A9EE3004C0680 /* GlanceController.swift */; };
 		409578CE1D3A9EE3004C0680 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409578CD1D3A9EE3004C0680 /* ComplicationController.swift */; };
 		409578D01D3A9EE3004C0680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409578CF1D3A9EE3004C0680 /* Assets.xcassets */; };
+		D722811A245CDDAC00B6C618 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7228119245CDDAC00B6C618 /* ContactsTableViewController.swift */; };
+		D722811C245CDDC700B6C618 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D722811B245CDDC700B6C618 /* Contacts.storyboard */; };
+		D722811E245CE45800B6C618 /* ContactsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */; };
+		D72F65A8247C83AB0006C91B /* FindLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72F65A7247C83AB0006C91B /* FindLocationHelper.swift */; };
 		D780CF3F219738A700992A14 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D780CF3E219738A700992A14 /* Contacts.swift */; };
+		D7A0AA67246499B80042EB88 /* MapkitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A0AA66246499B80042EB88 /* MapkitHelper.swift */; };
+		D7BC8A74246480D70076477F /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8A73246480D70076477F /* Contacts.swift */; };
+		D7DA9671248EB2C500A1CB20 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DA9670248EB2C500A1CB20 /* NotificationHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,12 +74,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4055130B1E95555400A75D9C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4055130D1E9555D500A75D9C /* DataController */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataController; sourceTree = "<group>"; };
 		4095789D1D3A9EE2004C0680 /* SpeedyContactAdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedyContactAdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		409578A01D3A9EE2004C0680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		409578A21D3A9EE2004C0680 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		409578A51D3A9EE2004C0680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		409578A71D3A9EE2004C0680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409578AA1D3A9EE2004C0680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		409578AC1D3A9EE2004C0680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,7 +93,14 @@
 		409578CD1D3A9EE3004C0680 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		409578CF1D3A9EE3004C0680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		409578D11D3A9EE3004C0680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7228119245CDDAC00B6C618 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
+		D722811B245CDDC700B6C618 /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
+		D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDetailViewController.swift; sourceTree = "<group>"; };
+		D72F65A7247C83AB0006C91B /* FindLocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLocationHelper.swift; sourceTree = "<group>"; };
 		D780CF3E219738A700992A14 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		D7A0AA66246499B80042EB88 /* MapkitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitHelper.swift; sourceTree = "<group>"; };
+		D7BC8A73246480D70076477F /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		D7DA9670248EB2C500A1CB20 /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,12 +144,13 @@
 		4095789F1D3A9EE2004C0680 /* SpeedyContactAdd */ = {
 			isa = PBXGroup;
 			children = (
+				D7228114245CDB0200B6C618 /* Models */,
+				D7228113245CDAFA00B6C618 /* Views */,
+				D7228112245CDAF400B6C618 /* Controllers */,
+				D7228111245CDAE800B6C618 /* Helpers */,
+				D7228110245CDAD900B6C618 /* Storyboards */,
 				409578A01D3A9EE2004C0680 /* AppDelegate.swift */,
-				4055130A1E95555400A75D9C /* Model.xcdatamodeld */,
-				409578A21D3A9EE2004C0680 /* ViewController.swift */,
-				409578A41D3A9EE2004C0680 /* Main.storyboard */,
 				409578A71D3A9EE2004C0680 /* Assets.xcassets */,
-				409578A91D3A9EE2004C0680 /* LaunchScreen.storyboard */,
 				409578AC1D3A9EE2004C0680 /* Info.plist */,
 				4055130D1E9555D500A75D9C /* DataController */,
 			);
@@ -161,9 +170,11 @@
 		409578C21D3A9EE3004C0680 /* SpeedyContactAdd WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D780CF3D2197380600992A14 /* Controller */,
+				D722810F245CD88B00B6C618 /* Storyboards */,
+				D76064FE2453CC9A00E652EE /* Helper */,
 				D780CF3B219737F800992A14 /* Model */,
 				D780CF3C2197380100992A14 /* View */,
+				D780CF3D2197380600992A14 /* Controller */,
 				4095789E1D3A9EE2004C0680 /* Products */,
 				409578CF1D3A9EE3004C0680 /* Assets.xcassets */,
 				409578D11D3A9EE3004C0680 /* Info.plist */,
@@ -178,6 +189,63 @@
 				409578C41D3A9EE3004C0680 /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D722810F245CD88B00B6C618 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D7228110245CDAD900B6C618 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D722811B245CDDC700B6C618 /* Contacts.storyboard */,
+				409578A91D3A9EE2004C0680 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D7228111245CDAE800B6C618 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D7A0AA66246499B80042EB88 /* MapkitHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D7228112245CDAF400B6C618 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D7228119245CDDAC00B6C618 /* ContactsTableViewController.swift */,
+				D722811D245CE45800B6C618 /* ContactsDetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D7228113245CDAFA00B6C618 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D7228114245CDB0200B6C618 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D7BC8A73246480D70076477F /* Contacts.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D76064FE2453CC9A00E652EE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D72F65A7247C83AB0006C91B /* FindLocationHelper.swift */,
+				D7DA9670248EB2C500A1CB20 /* NotificationHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		D780CF3B219737F800992A14 /* Model */ = {
@@ -325,8 +393,8 @@
 			files = (
 				4055130E1E9555D500A75D9C /* DataController in Resources */,
 				409578AB1D3A9EE2004C0680 /* LaunchScreen.storyboard in Resources */,
+				D722811C245CDDC700B6C618 /* Contacts.storyboard in Resources */,
 				409578A81D3A9EE2004C0680 /* Assets.xcassets in Resources */,
-				409578A61D3A9EE2004C0680 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,9 +422,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				409578A31D3A9EE2004C0680 /* ViewController.swift in Sources */,
+				D7A0AA67246499B80042EB88 /* MapkitHelper.swift in Sources */,
+				D722811E245CE45800B6C618 /* ContactsDetailViewController.swift in Sources */,
+				D7BC8A74246480D70076477F /* Contacts.swift in Sources */,
 				409578A11D3A9EE2004C0680 /* AppDelegate.swift in Sources */,
-				4055130C1E95555400A75D9C /* Model.xcdatamodeld in Sources */,
+				D722811A245CDDAC00B6C618 /* ContactsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,8 +436,10 @@
 			files = (
 				409059DF1D7DC90100411DCD /* NotificationController.swift in Sources */,
 				409578C81D3A9EE3004C0680 /* ExtensionDelegate.swift in Sources */,
+				D7DA9671248EB2C500A1CB20 /* NotificationHelper.swift in Sources */,
 				D780CF3F219738A700992A14 /* Contacts.swift in Sources */,
 				409578CE1D3A9EE3004C0680 /* ComplicationController.swift in Sources */,
+				D72F65A8247C83AB0006C91B /* FindLocationHelper.swift in Sources */,
 				409578C61D3A9EE3004C0680 /* InterfaceController.swift in Sources */,
 				409578CC1D3A9EE3004C0680 /* GlanceController.swift in Sources */,
 			);
@@ -389,14 +461,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		409578A41D3A9EE2004C0680 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				409578A51D3A9EE2004C0680 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		409578A91D3A9EE2004C0680 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -463,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -512,7 +576,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -529,6 +593,7 @@
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -549,6 +614,7 @@
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -570,6 +636,7 @@
 				IBSC_MODULE = SpeedyContactAdd_WatchKit_Extension;
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -589,6 +656,7 @@
 				IBSC_MODULE = SpeedyContactAdd_WatchKit_Extension;
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -605,8 +673,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WMWTV546RX;
 				INFOPLIST_FILE = SpeedyContactAdd/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -620,8 +689,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WMWTV546RX;
 				INFOPLIST_FILE = SpeedyContactAdd/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -670,19 +740,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4055130A1E95555400A75D9C /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4055130B1E95555400A75D9C /* Model.xcdatamodel */,
-			);
-			currentVersion = 4055130B1E95555400A75D9C /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 409578951D3A9EE2004C0680 /* Project object */;
 }
