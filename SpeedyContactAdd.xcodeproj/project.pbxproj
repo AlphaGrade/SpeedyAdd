@@ -344,7 +344,7 @@
 					1,
 				);
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = AlphaGradeINC;
 				TargetAttributes = {
 					4095789C1D3A9EE2004C0680 = {
@@ -507,6 +507,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -562,6 +563,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -595,7 +597,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = WMWTV546RX;
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp.watchkitextension;
@@ -616,7 +618,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = WMWTV546RX;
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp.watchkitextension;
@@ -639,7 +641,7 @@
 				DEVELOPMENT_TEAM = WMWTV546RX;
 				IBSC_MODULE = SpeedyContactAdd_WatchKit_Extension;
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -659,7 +661,7 @@
 				DEVELOPMENT_TEAM = WMWTV546RX;
 				IBSC_MODULE = SpeedyContactAdd_WatchKit_Extension;
 				INFOPLIST_FILE = "SpeedyContactAdd WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlphaGradeINC.SpeedyContactAdd.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
