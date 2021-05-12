@@ -38,7 +38,7 @@ extension InterfaceController {
         content.body = body
         content.badge = 1
         content.sound = UNNotificationSound.default // Deliver the notification in one second.
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         
         let identifier = UUID
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
