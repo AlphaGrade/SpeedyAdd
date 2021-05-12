@@ -115,7 +115,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
     @IBAction func sendtoPhone() {
-        if !recipNameString.isEmpty || !numberStore.isEmpty {
+        if recipNameString.isEmpty || numberStore.isEmpty {
             runNote(UUID: UUID(), contactName: "nil", message: "Missing Info", body: "Please Enter Name and Phone Number.")
             return
         }
