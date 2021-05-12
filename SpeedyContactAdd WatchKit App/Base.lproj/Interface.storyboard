@@ -25,19 +25,19 @@
                                 <button width="45" height="35" alignment="left" title="1" id="wKJ-Fy-HlE">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber1Action" destination="AgC-eL-Hgc" id="uNg-JQ-HXX"/>
+                                        <action selector="appendNumber1" destination="AgC-eL-Hgc" id="asy-4j-Hdp"/>
                                     </connections>
                                 </button>
                                 <button width="45" height="35" alignment="center" title="2" id="dnV-wl-IcT">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber2Action" destination="AgC-eL-Hgc" id="oco-Oa-LOP"/>
+                                        <action selector="appendNumber2" destination="AgC-eL-Hgc" id="wv9-fP-zEV"/>
                                     </connections>
                                 </button>
                                 <button width="45" height="35" alignment="right" title="3" id="X6k-pZ-gu4">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber3Action" destination="AgC-eL-Hgc" id="xrk-Z3-olZ"/>
+                                        <action selector="appendNumber3" destination="AgC-eL-Hgc" id="hWZ-uv-CFm"/>
                                     </connections>
                                 </button>
                             </items>
@@ -47,19 +47,19 @@
                                 <button width="45" height="35" alignment="left" title="4" id="FOK-Jq-GAu">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber4Action" destination="AgC-eL-Hgc" id="Y68-lM-oOQ"/>
+                                        <action selector="appendNumber4" destination="AgC-eL-Hgc" id="wV3-BQ-kzj"/>
                                     </connections>
                                 </button>
                                 <button width="45" height="35" alignment="center" title="5" id="bup-GL-bIo">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber5Action" destination="AgC-eL-Hgc" id="YcF-7A-QBP"/>
+                                        <action selector="appendNumber5" destination="AgC-eL-Hgc" id="UQj-Cm-hNV"/>
                                     </connections>
                                 </button>
                                 <button width="45" height="35" alignment="right" title="6" id="x2a-XQ-flT">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber6Action" destination="AgC-eL-Hgc" id="jY6-tK-Emh"/>
+                                        <action selector="appendNumber6" destination="AgC-eL-Hgc" id="GVG-5q-skb"/>
                                     </connections>
                                 </button>
                             </items>
@@ -69,35 +69,41 @@
                                 <button width="45" height="40" alignment="left" title="7" id="oRh-d8-Weq">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber7Action" destination="AgC-eL-Hgc" id="erk-nF-py4"/>
+                                        <action selector="appendNumber7" destination="AgC-eL-Hgc" id="6r3-ZK-hw6"/>
                                     </connections>
                                 </button>
                                 <button width="45" height="40" alignment="center" title="8" id="DXI-yV-FvW">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber8Action" destination="AgC-eL-Hgc" id="Idx-Kz-rW2"/>
+                                        <action selector="appendNumber8" destination="AgC-eL-Hgc" id="wLR-dz-bWg"/>
                                     </connections>
                                 </button>
                                 <button width="45" height="40" alignment="right" title="9" id="Zr6-Uh-GcU">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber9Action" destination="AgC-eL-Hgc" id="mGA-cY-T3K"/>
+                                        <action selector="appendNumber9" destination="AgC-eL-Hgc" id="ehw-Dg-sDn"/>
                                     </connections>
                                 </button>
                             </items>
                         </group>
                         <group width="1" height="35" alignment="left" id="dir-4g-4jh">
                             <items>
+                                <button width="45" height="35" alignment="left" title="clr" id="uKk-yN-IW8">
+                                    <fontDescription key="font" type="boldSystem" pointSize="24"/>
+                                    <connections>
+                                        <action selector="clearAll" destination="AgC-eL-Hgc" id="ZZ3-eV-DCl"/>
+                                    </connections>
+                                </button>
                                 <button width="45" height="35" alignment="center" title="0" id="mvX-fG-XPJ">
                                     <fontDescription key="font" type="boldSystem" pointSize="24"/>
                                     <connections>
-                                        <action selector="btnNumber0Action" destination="AgC-eL-Hgc" id="jot-7w-YYu"/>
+                                        <action selector="appendNumber0" destination="AgC-eL-Hgc" id="xxq-G1-tgQ"/>
                                     </connections>
                                 </button>
                                 <button width="45" height="35" alignment="right" title="bks" id="apZ-qA-NIH">
                                     <fontDescription key="font" type="boldSystem" pointSize="19"/>
                                     <connections>
-                                        <action selector="btnBackspaceAction" destination="AgC-eL-Hgc" id="Ut2-4j-H9b"/>
+                                        <action selector="removeLastNumber" destination="AgC-eL-Hgc" id="H7h-eS-6FR"/>
                                     </connections>
                                 </button>
                             </items>
@@ -109,20 +115,20 @@
                         <button width="1" alignment="left" title="Add Name" id="RDR-38-dsL">
                             <fontDescription key="font" type="boldSystem" pointSize="20"/>
                             <connections>
-                                <action selector="btnAddNameAction" destination="AgC-eL-Hgc" id="iOL-hw-d4g"/>
+                                <action selector="addNewContact" destination="AgC-eL-Hgc" id="zZu-3t-VsB"/>
                             </connections>
                         </button>
                         <button width="1" alignment="left" title="Save" id="koX-QV-BUE">
                             <fontDescription key="font" type="boldSystem" pointSize="20"/>
                             <connections>
-                                <action selector="btnSendtoPhone" destination="AgC-eL-Hgc" id="sre-fF-Qwa"/>
+                                <action selector="sendtoPhone" destination="AgC-eL-Hgc" id="lUn-Rn-nHe"/>
                             </connections>
                         </button>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                     <connections>
+                        <outlet property="lblName" destination="cPN-Iz-YF7" id="yqr-VM-xBb"/>
                         <outlet property="lblPhoneNumber" destination="Myc-F5-oVG" id="G2g-mG-MBZ"/>
-                        <outlet property="lblReName" destination="cPN-Iz-YF7" id="b6y-BB-lcz"/>
                     </connections>
                 </controller>
             </objects>

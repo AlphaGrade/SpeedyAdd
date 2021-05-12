@@ -33,104 +33,94 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             print("There was an error: \(error)")
             return
         }
-  
-    }
-        
-    
-    func sessionReachabilityDidChange(_ session: WCSession) {
-        
     }
     
     @IBOutlet var lblPhoneNumber: WKInterfaceLabel!
-    @IBOutlet weak var lblReName: WKInterfaceLabel!
+    @IBOutlet var lblName: WKInterfaceLabel!
     
-    var session:WCSession!
+    var session: WCSession!
     
     var contacts: [Contacts] = []
     var numberStore = String()
     var recipNameString = String()
-    var fullNameString = "fullNameString"
-    var numberString = "numberString"
-    var timer = Timer()
     let contactsDefault = UserDefaults.standard
-    let checkIfUserDefaultExist:((String) -> Bool) = { key in
+    let checkIfUserDefaultExist: ((String) -> Bool) = { key in
         return UserDefaults.standard.object(forKey: key) != nil
     }
     
-    func numberAdd(myCharacter:String) {
+    func numberAdd(myCharacter: String) {
         numberStore += myCharacter
         lblPhoneNumber.setText(numberStore)
     }
     func clearItems() {
-        numberStore = ""
-        recipNameString = ""
-        lblReName.setText("Contact Name")
+        numberStore = String()
+        recipNameString = String()
+        lblName.setText("Contact Name")
         lblPhoneNumber.setText("")
     }
     
     //Mark: Keypad that addes numbers to phone number
-    @IBAction func btnNumber1Action(){
+    @IBAction func appendNumber1(){
         numberAdd(myCharacter: "1")
     }
-    @IBAction func btnNumber2Action() {
+    @IBAction func appendNumber2() {
         numberAdd(myCharacter: "2")
     }
-    @IBAction func btnNumber3Action() {
+    @IBAction func appendNumber3() {
         numberAdd(myCharacter: "3")
     }
-    @IBAction func btnNumber4Action() {
+    @IBAction func appendNumber4() {
         numberAdd(myCharacter: "4")
     }
-    @IBAction func btnNumber5Action() {
+    @IBAction func appendNumber5() {
         numberAdd(myCharacter: "5")
     }
-    @IBAction func btnNumber6Action() {
+    @IBAction func appendNumber6() {
         numberAdd(myCharacter: "6")
     }
-    @IBAction func btnNumber7Action() {
+    @IBAction func appendNumber7() {
         numberAdd(myCharacter: "7")
     }
-    @IBAction func btnNumber8Action() {
+    @IBAction func appendNumber8() {
         numberAdd(myCharacter: "8")
     }
-    @IBAction func btnNumber9Action() {
+    @IBAction func appendNumber9() {
         numberAdd(myCharacter: "9")
     }
-    @IBAction func btnNumber0Action() {
+    @IBAction func appendNumber0() {
         numberAdd(myCharacter: "0")
     }
-    @IBAction func btnBackspaceAction() {
-        if numberStore != "" {
-            numberStore.remove(at: numberStore.index(before: numberStore.endIndex))
-            lblPhoneNumber.setText("\(numberStore)")
-        } else {return}
+    @IBAction func removeLastNumber() {
+        guard !numberStore.isEmpty else { return }
+        numberStore.remove(at: numberStore.index(before: numberStore.endIndex))
+        lblPhoneNumber.setText("\(numberStore)")
     }
+    
     // MARK: - Force Push button resets all
-    @IBAction func btnMenuClear() {
+    @IBAction func clearAll() {
         clearItems()
     }
     
     // MARK: - Add name to RecipNameStrings
-    @IBAction func btnAddNameAction() {
-        presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (result) in
-            guard let result = result else {return}
-            let resultString = result[0] as! String
-            self.recipNameString = resultString
-            self.lblReName.setText("\(resultString)")
+    @IBAction func addNewContact() {
+        presentTextInputController(withSuggestions: ["New Contact"], allowedInputMode: WKTextInputMode.plain) { (name) in
+            guard let name = name else {return}
+            let nameString = name[0] as! String
+            self.recipNameString = nameString
+            self.lblName.setText(nameString)
         }
     }
     
     
     
     //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
-    @IBAction func btnSendtoPhone() {
-        
-        if recipNameString == "" || numberStore == "" {return}
+    @IBAction func sendtoPhone() {
+        guard !recipNameString.isEmpty || !numberStore.isEmpty else { return }
         
         // TODO: - Add in a notification that states one of these is blank.
         
-        if (WCSession.default.isReachable) {
-             if checkIfUserDefaultExist("SavedContacts") == true {
+        if WCSession.default.isReachable {
+             if checkIfUserDefaultExist("SavedContacts") {
                 loadStoredContacts()
             }
             sendContactsToPhone()
@@ -162,17 +152,18 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                                         date: location.2)
         contacts.append(contactData)
         let encoder = JSONEncoder()
-        let data = (try? encoder.encode(contacts))!
-        WCSession.default.sendMessageData(data, replyHandler: { Data in
-        }, errorHandler: nil)
+        let data = try! encoder.encode(contacts)
+        WCSession.default.sendMessageData(data, replyHandler: { _ in },
+                                          errorHandler: nil)
         contacts = []
     }
-    // MARK: Store Contacts
+    
+    // MARK: - Store Contacts
     func storeSavedContacts() {
         // Load contacts if UserDefaults exist
-          if checkIfUserDefaultExist("SavedContacts") == true {
+        if checkIfUserDefaultExist("SavedContacts") {
                       loadStoredContacts()
-                  }
+        }
         // Create contact to be stored
         let location = getLocation()
         let contactData = Contacts.init(name: recipNameString,
@@ -184,7 +175,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         contacts.append(contactData)
         // Encode array and store into User Defaults
         let encoder = JSONEncoder()
-        let data = (try? encoder.encode(contacts))!
+        let data = try! encoder.encode(contacts)
         contactsDefault.set(data, forKey: "SavedContacts")
         // clear contact array.
         contacts = []
@@ -193,7 +184,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // MARK: upload contacts stored temporarily
     func loadStoredContacts() {
         let data = contactsDefault.object(forKey: "SavedContacts") as! Data
-        guard let decodedData = try? JSONDecoder().decode([Contacts].self, from: data) else { return }
+        guard let decodedData = try? JSONDecoder().decode([Contacts].self,
+                                                          from: data) else { return }
         contacts.append(contentsOf: decodedData)
         contactsDefault.removeObject(forKey: "SavedContacts")
     }

@@ -38,10 +38,10 @@ extension InterfaceController {
         content.body = body
         content.badge = 1
         content.sound = UNNotificationSound.default // Deliver the notification in one second.
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().timeIntervalSinceNow + 1, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
         
         let identifier = UUID
-        let request = UNNotificationRequest.init(identifier: identifier, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         // Schedule the notification.
         // optionally clear out pending and delivered notifications before adding new request
         let center = UNUserNotificationCenter.current()

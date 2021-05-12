@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>1</string>
 	<key>CFBundleVersion</key>
 	<string>18</string>
 	<key>CLKComplicationPrincipalClass</key>
@@ -43,11 +43,11 @@
 	<key>NSFileProviderDomainUsageDescription</key>
 	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added</string>
+	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added</string>
+	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added</string>
+	<string>$(PRODUCT_NAME) needs access to location services to record location contact was added.</string>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
 </dict>
