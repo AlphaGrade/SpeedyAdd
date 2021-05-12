@@ -115,9 +115,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //  MARK: Send user info to iPhone. If either name or number are blank, do nothing.
     @IBAction func sendtoPhone() {
-        guard !recipNameString.isEmpty || !numberStore.isEmpty else { return }
-        
-        // TODO: - Add in a notification that states one of these is blank.
+        if !recipNameString.isEmpty || !numberStore.isEmpty {
+            runNote(UUID: UUID(), contactName: "nil", message: "Missing Info", body: "Please Enter Name and Phone Number.")
+            return
+        }
         
         if WCSession.default.isReachable {
              if checkIfUserDefaultExist("SavedContacts") {
@@ -126,7 +127,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             sendContactsToPhone()
             DispatchQueue.main.async {
                 self.notifyUserAfterSave(inRange: true,
-                                         UUID: UUID().uuidString,
+                                         UUID: UUID(),
                                          contactName: self.recipNameString)
             }
         } else {
@@ -134,7 +135,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             storeSavedContacts()
             DispatchQueue.main.async {
                 self.notifyUserAfterSave(inRange: false,
-                                         UUID: UUID().uuidString,
+                                         UUID: UUID(),
                                          contactName: self.recipNameString)
             }
         }

@@ -15,7 +15,7 @@ extension InterfaceController {
         completionHandler([.alert, .sound])
     }
     
-    func notifyUserAfterSave(inRange: Bool, UUID: String, contactName: String)  {
+    func notifyUserAfterSave(inRange: Bool, UUID: UUID, contactName: String)  {
         // If WCSession is reachable, we notify stating contact has been sent to iOS
         if  inRange == true {
             runNote(UUID: UUID,
@@ -32,7 +32,7 @@ extension InterfaceController {
         }
     }
     
-    func runNote(UUID: String, contactName: String, message: String, body: String) {
+    func runNote(UUID: UUID, contactName: String, message: String, body: String) {
         let content = UNMutableNotificationContent()
         content.title = message
         content.body = body
@@ -40,7 +40,7 @@ extension InterfaceController {
         content.sound = UNNotificationSound.default // Deliver the notification in one second.
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         
-        let identifier = UUID
+        let identifier = UUID.uuidString
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         // Schedule the notification.
         // optionally clear out pending and delivered notifications before adding new request
