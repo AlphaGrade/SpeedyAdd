@@ -12,7 +12,7 @@ import UserNotifications
 extension InterfaceController {
 
     func UserNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound])
+        completionHandler([.list, .sound])
     }
     
     func notifyUserAfterSave(inRange: Bool, UUID: UUID, contactName: String)  {

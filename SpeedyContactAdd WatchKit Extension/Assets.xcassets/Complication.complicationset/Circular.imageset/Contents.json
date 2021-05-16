@@ -1,12 +1,10 @@
 {
   "images" : [
     {
-      "filename" : "Modular-58.png",
       "idiom" : "watch",
       "scale" : "2x"
     },
     {
-      "filename" : "SpeedyContactsAlpha-32.png",
       "idiom" : "watch",
       "scale" : "2x",
       "screen-width" : "<=145"
@@ -17,7 +15,6 @@
       "screen-width" : ">161"
     },
     {
-      "filename" : "SpeedyContactsAlpha-36.png",
       "idiom" : "watch",
       "scale" : "2x",
       "screen-width" : ">145"
